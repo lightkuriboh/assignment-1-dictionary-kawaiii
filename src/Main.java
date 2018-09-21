@@ -1,4 +1,4 @@
-public class Main {
+﻿public class Main {
 
     public static void main(String[] args) {
 	    System.out.println("Hello");
@@ -8,4 +8,4 @@ public class Main {
     }
 
 }
-// Nhap vao lenh co 2 dang: Seach+" "+word để tra word hoặc Delete+" "+word để xóa word khỏi từ điển
+// Nhap vao lenh co 3 dang: Lookup+" "+word để tra word, Delete+" "+word để xóa word khỏi từ điển, Search+"  "+word để tìm các từ có tiền tố giống word.
