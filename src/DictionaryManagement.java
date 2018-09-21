@@ -2,8 +2,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.PrintWriter;
 
 public class DictionaryManagement {
     private Dictionary myDictionary;
@@ -48,6 +50,7 @@ public class DictionaryManagement {
                 String engrisk = "";
                 String vietnamese = "";
                 String [] read_word = line.split("\t");
+                System.out.println(read_word[0]);
                 engrisk = read_word[0];
                 vietnamese = read_word[1];
                 Word word = new Word(engrisk, vietnamese);
@@ -61,6 +64,24 @@ public class DictionaryManagement {
         }
     }
 
+    public void dictionaryExportToFile() {
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter("baongocratxinh.txt", StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        writer.println("No   | English                         | Vietnamese");
+        ArrayList<Word> myList = this.myDictionary.getListWord();
+        for (int i = 0; i < myList.size(); i++) {
+            Word word = myList.get(i);
+            writer.print(i);
+            writer.println("    | " + word.getWord_target() + "                         | " + word.getWord_explain());
+        }
+        writer.close();
+
+    }
+
     public String dictionaryLookup(String english_word) {
         String ans = " !!! word not found";
         ArrayList<Word> myListData = this.getDictionaryData();
@@ -70,5 +91,26 @@ public class DictionaryManagement {
             }
         }
         return ans;
+    }
+
+    public void deleteWord(String Del) {
+        ArrayList<Word> curList=this.myDictionary.getListWord();
+        for(int i=0;i<curList.size(); i++) {
+            if (Del.equals(curList.get(i).getWord_target())) {
+                curList.remove(i);
+                break;
+            }
+        }
+    }
+
+    public String findPrefix(String curWord){
+        ArrayList<Word> curList=this.myDictionary.getListWord();
+        String res="";
+        for(int i=0;i<curList.size(); i++) {
+            if (curList.get(i).getWord_target().substring(0,curWord.length()).equals(curWord)) {
+                res=res+curList.get(i).getWord_target()+", ";
+            }
+        }
+        return res.substring(0,res.length()-2);
     }
 }

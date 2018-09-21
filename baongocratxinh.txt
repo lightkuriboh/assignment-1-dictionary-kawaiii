@@ -1,0 +1,7 @@
+No   | English                         | Vietnamese
+0    | handsome                         | dep trai
+1    | warm                         | am ap
+2    | kind                         | tot bung
+3    | beautiful                         | dep
+4    | pretty                         | xinh
+5    | cute                         | dang yeu

@@ -8,3 +8,4 @@ public class Main {
     }
 
 }
+// Nhap vao lenh co 2 dang: Seach+" "+word để tra word hoặc Delete+" "+word để xóa word khỏi từ điển

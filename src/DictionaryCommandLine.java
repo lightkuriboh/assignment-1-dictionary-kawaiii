@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.IOException;
 
 public class DictionaryCommandLine {
 
@@ -31,13 +32,29 @@ public class DictionaryCommandLine {
 
         Scanner myScanner = new Scanner(System.in);
 
-        System.out.println("Enter number of words you want to search: ");
+        System.out.println("Enter number of operators you need: ");
         int n = myScanner.nextInt();
         myScanner.nextLine();
         for (int i = 0; i < n; i++) {
-            System.out.println("Enter word you want to search: ");
+            System.out.println("Enter your operator: ");
             String wordLook = myScanner.nextLine();
-            System.out.println("The meaning of " + wordLook + " is \"" + this.myDictionaryManager.dictionaryLookup(wordLook) + "\"");
+            if (wordLook.substring(0, 6).equals("Lookup")) {
+                wordLook = wordLook.substring(7, wordLook.length());
+                System.out.println("The meaning of " + wordLook + " is \"" + this.myDictionaryManager.dictionaryLookup(wordLook) + "\"");
+            } else if (wordLook.substring(0, 6).equals("Search")) {
+                wordLook = wordLook.substring(7, wordLook.length());
+                System.out.println("Words starting with \"" + wordLook + "\" are: " + this.dictionarySearcher(wordLook) + ".");
+
+            } else {
+                wordLook = wordLook.substring(7, wordLook.length());
+                this.myDictionaryManager.deleteWord(wordLook);
+                System.out.println("The word \"" + wordLook + "\" has been deleted!");
+            }
         }
+        this.myDictionaryManager.dictionaryExportToFile();
+    }
+
+    public String dictionarySearcher(String curWord) {
+        return this.myDictionaryManager.findPrefix(curWord);
     }
 }
