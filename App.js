@@ -38,7 +38,7 @@ class App extends Component<Props> {
 
     componentWillMount() {
         this.setState({
-            greetingMessage: 'minh sieu ngu ngu',
+            greetingMessage: 'xin chao hieu',
             userName: 'dep trai qua'
         });
         MyNativeModule.initData();

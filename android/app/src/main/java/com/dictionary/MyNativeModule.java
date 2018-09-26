@@ -12,9 +12,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.dictionary.develop.*;
+
 public class MyNativeModule extends ReactContextBaseJavaModule {
 
     ArrayList<Integer> myList = new ArrayList<>();
+    DBHandler mine;
 
     public MyNativeModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -32,15 +35,14 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
         for (int num: this.myList) {
             greeting += Integer.toString(num);
         }
-        System.out.println(greeting);
+        //System.out.println(greeting);
+        greeting += this.mine.getData();
         callback.invoke(greeting);
     }
 
     @ReactMethod
     public void initData() {
-        this.myList.add(1);
-        this.myList.add(4);
-        this.myList.add(3);
+        this.mine = new DBHandler(this.getReactApplicationContext());
     }
 
     @Override
