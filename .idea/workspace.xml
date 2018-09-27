@@ -64,7 +64,7 @@
     <session id="-1799446941">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.28" value="1" />
@@ -109,7 +109,7 @@
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="8789">
-              <caret line="537" column="10" selection-start-line="537" selection-start-column="10" selection-end-line="537" selection-end-column="10" />
+              <caret line="531" column="10" selection-start-line="531" selection-start-column="10" selection-end-line="531" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -230,7 +230,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538039038194" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538039106366" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
@@ -280,7 +280,7 @@
       <workItem from="1537438234580" duration="608000" />
       <workItem from="1537495911183" duration="6734000" />
       <workItem from="1537505340002" duration="505000" />
-      <workItem from="1538037294483" duration="1805000" />
+      <workItem from="1538037294483" duration="2379000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1537372603808</created>
@@ -300,7 +300,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10632000" />
+    <option name="totallyTimeSpent" value="11206000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -313,7 +313,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1488" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28361344" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -411,7 +410,7 @@
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8789">
-          <caret line="537" column="10" selection-start-line="537" selection-start-column="10" selection-end-line="537" selection-end-column="10" />
+          <caret line="531" column="10" selection-start-line="531" selection-start-column="10" selection-end-line="531" selection-end-column="10" />
         </state>
       </provider>
     </entry>
