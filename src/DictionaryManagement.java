@@ -103,14 +103,14 @@ public class DictionaryManagement {
         }
     }
 
-    public String findPrefix(String curWord){
+    public ArrayList<Word> findPrefix(String curWord){
         ArrayList<Word> curList=this.myDictionary.getListWord();
-        String res="";
+        ArrayList<Word> res = new ArrayList<Word>();
         for(int i=0;i<curList.size(); i++) {
             if (curList.get(i).getWord_target().substring(0,curWord.length()).equals(curWord)) {
-                res=res+curList.get(i).getWord_target()+", ";
+                res.add(curList.get(i));
             }
         }
-        return res.substring(0,res.length()-2);
+        return res;
     }
 }

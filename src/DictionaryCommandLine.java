@@ -43,7 +43,12 @@ public class DictionaryCommandLine {
                 System.out.println("The meaning of " + wordLook + " is \"" + this.myDictionaryManager.dictionaryLookup(wordLook) + "\"");
             } else if (wordLook.substring(0, 6).equals("Search")) {
                 wordLook = wordLook.substring(7, wordLook.length());
-                System.out.println("Words starting with \"" + wordLook + "\" are: " + this.dictionarySearcher(wordLook) + ".");
+                ArrayList<Word> sc= this.dictionarySearcher(wordLook);
+                System.out.print("Words starting with \"" + wordLook + "\" are: ");
+                for(Word j: sc) {
+                    System.out.print(j.getWord_target()+" ");
+                }
+                System.out.println(".");
 
             } else {
                 wordLook = wordLook.substring(7, wordLook.length());
@@ -54,7 +59,7 @@ public class DictionaryCommandLine {
         this.myDictionaryManager.dictionaryExportToFile();
     }
 
-    public String dictionarySearcher(String curWord) {
+    public ArrayList<Word> dictionarySearcher(String curWord) {
         return this.myDictionaryManager.findPrefix(curWord);
     }
 }
