@@ -5,10 +5,5 @@ public class Main {
 
         System.out.println("Hello World");
 
-        TestModule mine = new TestModule();
-        mine.init();
-
-        //System.out.println(mine.getName());
-        //System.out.println(mine.getData());
     }
 }

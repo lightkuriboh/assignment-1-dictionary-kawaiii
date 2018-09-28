@@ -5,11 +5,16 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.*;
 import android.content.Context;
+import android.text.method.HideReturnsTransformationMethod;
+
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
-import javax.annotation.Nullable;
+import java.util.ArrayList;
 
 public class DBHandler extends SQLiteAssetHelper {
+
+    private HintManagement myHints;
+
     private static final int DATABASE_VERSION = 1;
 
     private static final String DATABASE_NAME = "edict.db";
@@ -23,6 +28,8 @@ public class DBHandler extends SQLiteAssetHelper {
     private static final String KEY_DETAILS = "details";
 
     public SQLiteDatabase my_db;
+
+
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -45,13 +52,31 @@ public class DBHandler extends SQLiteAssetHelper {
         this.my_db.close();
     }
 
-    public String getData() {
+    public String getHint(String word) {
+        return this.myHints.getHint(word);
+    }
+
+    public void initData() {
         this.my_db = this.getReadableDatabase();
-        Cursor cursor = this.my_db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        this.myHints = new HintManagement();
+        Cursor cursor = this.my_db.rawQuery("SELECT word FROM " + TABLE_NAME, null);
         cursor.moveToFirst();
-        String name = cursor.getString(0);
-        String details = cursor.getString(1);
-        String details_2 = cursor.getString(2);
-        return name + " is " + details + " xxx " + details_2;
+        while (!cursor.isAfterLast()) {
+            this.myHints.addMoreWord(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        this.myHints.initTrie();
+    }
+
+    public String getData(String searchWord) {
+        this.my_db = this.getReadableDatabase();
+        Cursor cursor = this.my_db.rawQuery("SELECT detail FROM " + TABLE_NAME + " WHERE word = '" + searchWord + "';", null);
+        String result = "Cannot fine this word \"" + searchWord + "\"";
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                result = cursor.getString(0);
+            }
+        }
+        return result;
     }
 }

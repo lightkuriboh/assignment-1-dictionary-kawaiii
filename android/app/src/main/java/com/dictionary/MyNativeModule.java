@@ -16,8 +16,7 @@ import com.dictionary.develop.*;
 
 public class MyNativeModule extends ReactContextBaseJavaModule {
 
-    ArrayList<Integer> myList = new ArrayList<>();
-    DBHandler mine;
+    private DBHandler mine;
 
     public MyNativeModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -30,19 +29,19 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void greetUser(String name, Callback callback) {
-        String greeting = "Hello " + name + " ";
-        this.myList.add(8);
-        for (int num: this.myList) {
-            greeting += Integer.toString(num);
-        }
-        //System.out.println(greeting);
-        greeting += this.mine.getData();
+        String greeting = this.mine.getData(name);
         callback.invoke(greeting);
     }
 
     @ReactMethod
     public void initData() {
         this.mine = new DBHandler(this.getReactApplicationContext());
+        this.mine.initData();
+    }
+
+    @ReactMethod
+    public void getHint(String word, Callback callback) {
+        callback.invoke(this.mine.getHint(word));
     }
 
     @Override
