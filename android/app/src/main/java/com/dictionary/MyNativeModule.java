@@ -29,7 +29,7 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void greetUser(String name, Callback callback) {
-        String greeting = this.mine.getData(name);
+        String greeting = this.mine.getData(name.toLowerCase());
         callback.invoke(greeting);
     }
 
@@ -41,7 +41,7 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void getHint(String word, Callback callback) {
-        callback.invoke(this.mine.getHint(word));
+        callback.invoke(this.mine.getHint(word.toLowerCase()));
     }
 
     @Override

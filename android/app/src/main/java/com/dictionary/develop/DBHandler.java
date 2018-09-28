@@ -17,15 +17,9 @@ public class DBHandler extends SQLiteAssetHelper {
 
     private static final int DATABASE_VERSION = 1;
 
-    private static final String DATABASE_NAME = "edict.db";
-    //private static final String DATABASE_NAME = "my_db.db";
+    private static final String DATABASE_NAME = "dictionary.db";
 
-    //private static final String TABLE_NAME = "my_table";
-    private static final String TABLE_NAME = "tbl_edict";
-
-    private static final String KEY_NAME = "name";
-
-    private static final String KEY_DETAILS = "details";
+    private static final String TABLE_NAME = "minhpro99";
 
     public SQLiteDatabase my_db;
 
@@ -43,13 +37,21 @@ public class DBHandler extends SQLiteAssetHelper {
         onCreate(db);
     }
 
-    public void insertData(String name, String details) {
-        this.my_db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, name);
-        values.put(KEY_DETAILS, details);
-        this.my_db.insert(TABLE_NAME, null, values);
-        this.my_db.close();
+    public String insertData(String detail) { // detail co dang {{$english},{$vietnamese},{$pronunciation}}
+        return "Inserted success!";
+        //return "Word existed!";
+        //return "Invalid data!";
+    }
+
+    public String deleteData(String word) {
+        return "Deleted success!";
+        //return "Word not found!";
+    }
+
+    public String updateWord(final String word, String detail) { // detail co dang {{$english},{$vietnamese},{$pronunciation}}
+        return "Updated success!";
+        //return "Word not found!";
+        //return "Invalid data!";
     }
 
     public String getHint(String word) {
@@ -59,7 +61,7 @@ public class DBHandler extends SQLiteAssetHelper {
     public void initData() {
         this.my_db = this.getReadableDatabase();
         this.myHints = new HintManagement();
-        Cursor cursor = this.my_db.rawQuery("SELECT word FROM " + TABLE_NAME, null);
+        Cursor cursor = this.my_db.rawQuery("SELECT english FROM " + TABLE_NAME, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             this.myHints.addMoreWord(cursor.getString(0));
@@ -70,11 +72,11 @@ public class DBHandler extends SQLiteAssetHelper {
 
     public String getData(String searchWord) {
         this.my_db = this.getReadableDatabase();
-        Cursor cursor = this.my_db.rawQuery("SELECT detail FROM " + TABLE_NAME + " WHERE word = '" + searchWord + "';", null);
+        Cursor cursor = this.my_db.rawQuery("SELECT pronunciation, vietnamese FROM " + TABLE_NAME + " WHERE english = '" + searchWord + "';", null);
         String result = "Cannot fine this word \"" + searchWord + "\"";
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                result = cursor.getString(0);
+                result = cursor.getString(0) + "<br/>" + cursor.getString(1);
             }
         }
         return result;

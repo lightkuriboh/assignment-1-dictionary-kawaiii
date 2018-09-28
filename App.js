@@ -149,7 +149,6 @@ class App extends Component<Props> {
                             isVisible = {this.state.renderingSearchForm}
                             result = {this.state.result}
                         />
-                        <Text>{this.state.searchWord}</Text>
                     </View>
                     <View style={
                         {
