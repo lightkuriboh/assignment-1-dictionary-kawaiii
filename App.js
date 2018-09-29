@@ -7,7 +7,6 @@
  */
 
 import React, {Component} from 'react';
-import EngViet from './components/EngViet/EngViet';
 import Menu from './components/Menu';
 
 import {
