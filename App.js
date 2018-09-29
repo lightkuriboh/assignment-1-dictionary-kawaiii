@@ -12,10 +12,7 @@ import {
     StyleSheet,
     Text,
     View,
-    NativeModules,
-    TextInput,
-    Switch,
-    Button
+    NativeModules
 } from 'react-native';
 
 import EngViet from './components/EngViet/EngViet';
@@ -96,16 +93,16 @@ class App extends Component<Props> {
     };
 
     onChooseWord = (word) => {
+        MyNativeModule.greetUser(word, this.displayResult);
         this.setState({
             searchWord: word
         });
-        this.greetUserCallBack();
     };
 
     makeSearchFormVisible = () => {
         this.setState({
             renderingSearchForm: !this.state.renderingSearchForm
-        })
+        });
     };
 
     render() {
@@ -120,7 +117,7 @@ class App extends Component<Props> {
                 }>
                     <View style={
                         {
-                            flex: 0.85,
+                            flex: 0.5,
                             backgroundColor: '#222',
                             width: '100%',
                             justifyContent: 'center',
@@ -135,7 +132,8 @@ class App extends Component<Props> {
                             flex: 5,
                             backgroundColor: '#f5fcff',
                             width: '100%',
-                            justifyContent: 'center'
+                            justifyContent: 'center',
+                            flexDirection: 'row'
                         }
                     }>
                         <EngViet
@@ -143,7 +141,7 @@ class App extends Component<Props> {
                             onSearch = {() => this.greetUserCallBack()}
                             onChoose = {(word) => this.onChooseWord(word)}
                             makeVisible = {() => this.makeSearchFormVisible()}
-                            text = {this.state.searchWord}
+                            searchWord = {this.state.searchWord}
                             details = {this.state.details}
                             hints = {this.state.hints}
                             isVisible = {this.state.renderingSearchForm}
@@ -152,7 +150,7 @@ class App extends Component<Props> {
                     </View>
                     <View style={
                         {
-                            flex: 0.5,
+                            flex: 0.3,
                             backgroundColor: '#adebeb',
                             width: '100%',
                             justifyContent: 'center',

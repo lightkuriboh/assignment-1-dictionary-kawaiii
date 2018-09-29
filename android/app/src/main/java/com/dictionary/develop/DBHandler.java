@@ -1,15 +1,11 @@
 
 package com.dictionary.develop;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.*;
 import android.content.Context;
-import android.text.method.HideReturnsTransformationMethod;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
-
-import java.util.ArrayList;
 
 public class DBHandler extends SQLiteAssetHelper {
 
@@ -76,7 +72,7 @@ public class DBHandler extends SQLiteAssetHelper {
         String result = "Cannot fine this word \"" + searchWord + "\"";
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                result = cursor.getString(0) + "<br/>" + cursor.getString(1);
+                result = cursor.getString(0) + "\n" + cursor.getString(1);
             }
         }
         return result;
