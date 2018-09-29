@@ -61,7 +61,7 @@ export default class TextArea extends Component {
                 </View>
                 <View style = {styles.footer}>
                     <Button rounded warning
-                            onPress = {this.props.makeVisible}
+                            onPress = {this.props.makeInvisible}
                     >
                         <Text>Back</Text>
                     </Button>

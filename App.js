@@ -7,15 +7,15 @@
  */
 
 import React, {Component} from 'react';
+import EngViet from './components/EngViet/EngViet';
+import Menu from './components/Menu';
+
 import {
-    Platform,
     StyleSheet,
     Text,
     View,
     NativeModules
 } from 'react-native';
-
-import EngViet from './components/EngViet/EngViet';
 
 const MyNativeModule = NativeModules.MyNativeModule;
 
@@ -69,8 +69,7 @@ class App extends Component<Props> {
                 vietnamese: '',
                 pronunciation: ''
             },
-            renderingSearchForm: false,
-            timePass: false
+            renderingSearchForm: false
         });
         MyNativeModule.initData();
     };
@@ -96,12 +95,6 @@ class App extends Component<Props> {
         MyNativeModule.greetUser(word, this.displayResult);
         this.setState({
             searchWord: word
-        });
-    };
-
-    makeSearchFormVisible = () => {
-        this.setState({
-            renderingSearchForm: !this.state.renderingSearchForm
         });
     };
 
@@ -136,15 +129,13 @@ class App extends Component<Props> {
                             flexDirection: 'row'
                         }
                     }>
-                        <EngViet
+                        <Menu
                             onTextChange = {(text) => this.onTextChange(text)}
                             onSearch = {() => this.greetUserCallBack()}
                             onChoose = {(word) => this.onChooseWord(word)}
-                            makeVisible = {() => this.makeSearchFormVisible()}
                             searchWord = {this.state.searchWord}
                             details = {this.state.details}
                             hints = {this.state.hints}
-                            isVisible = {this.state.renderingSearchForm}
                             result = {this.state.result}
                         />
                     </View>

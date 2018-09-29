@@ -9,9 +9,6 @@ import iconUpdate from '../../images/update.png';
 import Tts from 'react-native-tts';
 Tts.setDefaultLanguage('en-IE');
 
-import Menu from '../Menu';
-import Document from '../DocumentTrans/DocumentTrans';
-
 export default class EngViet extends React.Component {
 
     constructor(props) {
@@ -33,27 +30,7 @@ export default class EngViet extends React.Component {
         Tts.speak(this.props.searchWord);
     };
 
-    madeChosen = (selection) => {
-        this.setState({
-           myChosen: selection
-        });
-        this.props.makeVisible();
-    };
-
     render() {
-        if (!this.props.isVisible) {
-            return (
-                <Menu
-                    makeVisible={(myOption) => this.madeChosen(myOption)}
-                />
-            )
-        } else if (this.state.myChosen === '1') {
-            return (
-                <Document
-                    makeVisible = {this.props.makeVisible}
-                />
-            )
-        }
         return (
             <View style = {styles.mainContainer}>
                 <View style={styles.mainContent}>
@@ -110,7 +87,7 @@ export default class EngViet extends React.Component {
                 </View>
                 <View style = {styles.footer}>
                     <Button rounded warning
-                        onPress = {this.props.makeVisible}
+                        onPress = {this.props.makeInvisible}
                     >
                         <Text>Back</Text>
                     </Button>
