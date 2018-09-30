@@ -16,7 +16,7 @@ export default class EngViet extends React.Component {
         this.state = {
             inputText: props.searchWord,
             myChosen: ''
-        }
+        };
     }
 
     onTextChange = function (text) {
@@ -30,6 +30,13 @@ export default class EngViet extends React.Component {
         Tts.speak(this.props.searchWord);
     };
 
+    itemWordChosen = (word) => {
+        this.setState({
+            inputText: word
+        });
+        this.props.onChoose(word);
+    };
+
     render() {
         return (
             <View style = {styles.mainContainer}>
@@ -37,11 +44,12 @@ export default class EngViet extends React.Component {
                     <View style={styles.searchLayout}>
                         <View style={styles.searchForm}>
                             <Form>
-                                <Item>
+                                <Item rounded>
                                     <Input
                                         bordered
-                                        placeholder = "Search"
+                                        placeholder='Search'
                                         onChangeText={(text) => this.onTextChange(text)}
+                                        value={this.state.inputText}
                                     />
                                     <Button transparent onPress={this.props.onSearch}>
                                         <Icon name='search' />
@@ -57,10 +65,10 @@ export default class EngViet extends React.Component {
                                     }
                                     renderItem = {({item}) => <View style={styles.listContainer}><Button
                                         block
-                                        success
-                                        onPress={() => this.props.onChoose(item.key)}
-                                        color = '#00cc00'
-                                    ><Text>{item.key}</Text></Button></View>}
+                                        bordered
+                                        primary
+                                        onPress={() => this.itemWordChosen(item.key)}
+                                    ><Text style={{color: 'red'}}>{item.key}</Text></Button></View>}
                                 />
                             </ScrollView>
                         </View>

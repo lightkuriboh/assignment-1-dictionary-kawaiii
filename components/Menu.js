@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image} from 'react-native';
+import { Image} from 'react-native';
 import { Container, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon } from 'native-base';
 import EngViet from './EngViet/EngViet';
 import DocumentTrans from './DocumentTrans/DocumentTrans';
