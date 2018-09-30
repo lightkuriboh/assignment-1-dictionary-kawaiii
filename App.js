@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import Menu from './components/Menu';
+import {Header, Left, Body, Button, Icon} from 'native-base';
 
 import {
     StyleSheet,
@@ -25,6 +26,7 @@ class App extends Component<Props> {
         this.setState({
             searchWord: 'Hieu dep trai',
             result: '',
+            showingMenu: true,
             hints: [
                 {key: 'beautiful'},
                 {key: 'pretty'},
@@ -97,59 +99,78 @@ class App extends Component<Props> {
         });
     };
 
+    makeMenuVanish = () => {
+        this.setState({
+            showingMenu: false
+        });
+    };
+
+    makeMenuVisible = () => {
+        this.setState({
+            showingMenu: true
+        });
+    };
+
     render() {
         return (
             <View style={styles.container}>
                 <View style={
                     {
-                        flex: 1,
-                        flexDirection: 'column',
-                        width: '100%'
+                        flex: 0.5,
+                        backgroundColor: '#0066ff',
+                        width: '100%',
+                        justifyContent: 'space-between',
+                        flexDirection: 'row'
                     }
                 }>
-                    <View style={
-                        {
-                            flex: 0.5,
-                            backgroundColor: '#222',
-                            width: '100%',
-                            justifyContent: 'center',
-                        }
-                    }>
+                    <View style={{justifyContent: 'center'}}>
+                        <Button transparent onPress={() => this.makeMenuVisible()}>
+                            <Icon name='arrow-back' style={{color: 'white'}} />
+                        </Button>
+                    </View>
+                    <View style={{justifyContent: 'center'}}>
                         <Text style={styles.heading}>
                             Super Dictionary
                         </Text>
                     </View>
-                    <View style={
-                        {
-                            flex: 5,
-                            backgroundColor: '#f5fcff',
-                            width: '100%',
-                            justifyContent: 'center',
-                            flexDirection: 'row'
-                        }
-                    }>
-                        <Menu
-                            onTextChange = {(text) => this.onTextChange(text)}
-                            onSearch = {() => this.greetUserCallBack()}
-                            onChoose = {(word) => this.onChooseWord(word)}
-                            searchWord = {this.state.searchWord}
-                            details = {this.state.details}
-                            hints = {this.state.hints}
-                            result = {this.state.result}
-                        />
+                    <View style={{justifyContent: 'center'}}>
+                        <Button transparent>
+                            <Icon name='heart' style={{color: 'white'}} />
+                        </Button>
                     </View>
-                    <View style={
-                        {
-                            flex: 0.3,
-                            backgroundColor: '#adebeb',
-                            width: '100%',
-                            justifyContent: 'center',
-                        }
-                    }>
-                        <Text style={styles.about}>
-                            This UI designed by KuribohKute
-                        </Text>
-                    </View>
+                </View>
+                <View style={
+                    {
+                        flex: 5,
+                        backgroundColor: '#f5fcff',
+                        width: '100%',
+                        justifyContent: 'center',
+                        flexDirection: 'row'
+                    }
+                }>
+                    <Menu
+                        onTextChange = {(text) => this.onTextChange(text)}
+                        onSearch = {() => this.greetUserCallBack()}
+                        onChoose = {(word) => this.onChooseWord(word)}
+                        searchWord = {this.state.searchWord}
+                        details = {this.state.details}
+                        hints = {this.state.hints}
+                        result = {this.state.result}
+                        showingMenu = {this.state.showingMenu}
+                        makeMenuVanish = {this.makeMenuVanish}
+                    />
+                </View>
+                <View style={
+                    {
+                        flex: 0.3,
+                        backgroundColor: '#adebeb',
+                        width: '100%',
+                        justifyContent: 'center',
+                    }
+                }>
+                    <Text style={styles.about}>
+                        This UI designed by KuribohKute
+                    </Text>
                 </View>
             </View>
         );
@@ -164,6 +185,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'column'
     },
     heading: {
         textAlign: 'center',

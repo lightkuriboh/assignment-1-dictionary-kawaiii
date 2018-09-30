@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, FlatList} from 'react-native';
 import CircleButton from 'react-native-circle-button';
-import { Button, Text, Form, Input, Item } from 'native-base';
+import { Button, Text, Form, Input, Item, Card, CardItem, Icon } from 'native-base';
 import iconSound from '../../images/sound.png';
 import iconDelete from '../../images/delete.png';
 import iconInsert from '../../images/insert.png';
@@ -39,17 +39,14 @@ export default class EngViet extends React.Component {
                             <Form>
                                 <Item>
                                     <Input
-                                        placeholder = "Search word"
+                                        bordered
+                                        placeholder = "Search"
                                         onChangeText={(text) => this.onTextChange(text)}
                                     />
+                                    <Button transparent onPress={this.props.onSearch}>
+                                        <Icon name='search' />
+                                    </Button>
                                 </Item>
-                                <Button block info small
-                                        style={{width: '100%', height: '30%'}}
-                                        onPress={this.props.onSearch}
-                                        color="#841584"
-                                >
-                                    <Text>Submit</Text>
-                                </Button>
                             </Form>
                         </View>
                         <View style={styles.listHints}>
@@ -69,29 +66,28 @@ export default class EngViet extends React.Component {
                         </View>
                     </View>
                     <View style = {styles.detailLayout}>
-                        <View style={styles.detailPart}>
-                            <ScrollView>
-                                <Text>{this.props.result}</Text>
-                            </ScrollView>
-                        </View>
-                        <View style={styles.usefulOptions}>
-                            <CircleButton
-                                iconButtonTop={iconSound}
-                                iconButtonLeft={iconUpdate}
-                                iconButtonRight={iconInsert}
-                                iconButtonBottom={iconDelete}
-                                onPressButtonTop={ () => {this.speakSearchWord()} }
-                            />
-                        </View>
+                        <Card>
+                            <CardItem header bordered>
+                                <Text>
+                                    Word Details
+                                </Text>
+                            </CardItem>
+                            <CardItem cardBody style={{height:'70%'}}>
+                                <ScrollView>
+                                    <Text>{this.props.result}</Text>
+                                </ScrollView>
+                            </CardItem>
+                            <CardItem footer bordered style={styles.usefulOptions}>
+                                <CircleButton
+                                    iconButtonTop={iconSound}
+                                    iconButtonLeft={iconUpdate}
+                                    iconButtonRight={iconInsert}
+                                    iconButtonBottom={iconDelete}
+                                    onPressButtonTop={ () => {this.speakSearchWord()} }
+                                />
+                            </CardItem>
+                        </Card>
                     </View>
-                </View>
-                <View style = {styles.footer}>
-                    <Button rounded warning
-                        onPress = {this.props.makeInvisible}
-                    >
-                        <Text>Back</Text>
-                    </Button>
-
                 </View>
             </View>
         );
@@ -116,12 +112,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     searchForm: {
-        flex: 2,
+        height: 60,
         flexDirection: 'column',
         justifyContent: 'flex-start',
     },
     searchLayout: {
-        flex: 2,
+        flex: 1.25,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         padding: 20,
@@ -137,16 +133,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#e9e9e9',
         borderRadius: 15,
         margin: 10,
-        borderWidth: 1,
-        borderColor: '#0066ff',
         flexDirection: 'column'
-    },
-    footer: {
-        flex: 0.5,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        zIndex: 0,
-        paddingBottom: 5
     },
     mainContent: {
         flex: 9,
@@ -155,7 +142,7 @@ const styles = StyleSheet.create({
         zIndex: 1
     },
     listHints: {
-        flex: 5,
+        flex: 1,
         backgroundColor: 'white',
         marginTop: 10
     },
@@ -164,9 +151,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     usefulOptions: {
-        flex: 1,
-        borderWidth: 1,
-        borderColor: '#0066ff',
         justifyContent: 'space-between',
         flexDirection: 'row',
         borderRadius: 15,

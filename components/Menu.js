@@ -31,6 +31,7 @@ export default class Menu extends React.Component {
         this.setState({
             myAction: selection
         });
+        this.props.makeMenuVanish();
     };
 
     makeInvisible = () => {
@@ -40,56 +41,57 @@ export default class Menu extends React.Component {
     };
 
     render() {
-        if (this.state.myAction === '1') {
+        if (this.state.myAction === '0' || this.props.showingMenu === true) {
             return (
-                <EngViet
-                    onTextChange = {(text) => this.props.onTextChange(text)}
-                    onSearch = {() => this.props.onSearch()}
-                    onChoose = {(word) => this.props.onChoose(word)}
-                    makeInvisible = {() => this.makeInvisible()}
-                    searchWord = {this.state.searchWord}
-                    details = {this.props.details}
-                    hints = {this.props.hints}
-                    result = {this.props.result}
-                />
+                <Container>
+                    <View>
+                        <DeckSwiper
+                            dataSource={this.state.cards}
+                            renderItem={item =>
+                                <Card style={{elevation: 3}}>
+                                    <CardItem button onPress={() => this.menuChosen(item.id)}>
+                                        <Left>
+                                            <Thumbnail source={item.image}/>
+                                            <Body>
+                                            <Text>{item.text}</Text>
+                                            <Text note>Hieu dep trai</Text>
+                                            </Body>
+                                        </Left>
+                                    </CardItem>
+                                    <CardItem cardBody>
+                                        <Image style={{height: 300, flex: 1}} source={item.image}/>
+                                    </CardItem>
+                                    <CardItem>
+                                        <Icon name="heart" style={{color: '#ED4A6A'}}/>
+                                        <Text>{item.name}</Text>
+                                    </CardItem>
+                                </Card>
+                            }
+                        />
+                    </View>
+                </Container>
             )
-        } else
-            if (this.state.myAction === '2') {
+        } else {
+            if (this.state.myAction === '1') {
                 return (
-                    <DocumentTrans
-                        makeInvisible = {() => this.makeInvisible()}
+                    <EngViet
+                        onTextChange={(text) => this.props.onTextChange(text)}
+                        onSearch={() => this.props.onSearch()}
+                        onChoose={(word) => this.props.onChoose(word)}
+                        makeInvisible={() => this.makeInvisible()}
+                        searchWord={this.state.searchWord}
+                        details={this.props.details}
+                        hints={this.props.hints}
+                        result={this.props.result}
                     />
                 )
-            } else {
+            } else if (this.state.myAction === '2') {
                 return (
-                    <Container>
-                        <View>
-                            <DeckSwiper
-                                dataSource={this.state.cards}
-                                renderItem={item =>
-                                    <Card style={{elevation: 3}}>
-                                        <CardItem button onPress={() => this.menuChosen(item.id)}>
-                                            <Left>
-                                                <Thumbnail source={item.image}/>
-                                                <Body>
-                                                <Text>{item.text}</Text>
-                                                <Text note>NativeBase</Text>
-                                                </Body>
-                                            </Left>
-                                        </CardItem>
-                                        <CardItem cardBody>
-                                            <Image style={{height: 300, flex: 1}} source={item.image}/>
-                                        </CardItem>
-                                        <CardItem>
-                                            <Icon name="heart" style={{color: '#ED4A6A'}}/>
-                                            <Text>{item.name}</Text>
-                                        </CardItem>
-                                    </Card>
-                                }
-                            />
-                        </View>
-                    </Container>
+                    <DocumentTrans
+                        makeInvisible={() => this.makeInvisible()}
+                    />
                 )
             }
+        }
     }
 }
