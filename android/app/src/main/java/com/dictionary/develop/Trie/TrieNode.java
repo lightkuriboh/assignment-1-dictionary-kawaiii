@@ -3,21 +3,40 @@ import java.util.ArrayList;
 
 public class TrieNode {
     private ArrayList<Integer> indexList;
-
-    public ArrayList<Integer> getIndexList() {
-        return indexList;
-    }
-
-    public void setIndexList(ArrayList<Integer> indexList) {
-        this.indexList = indexList;
-    }
+    private ArrayList<TrieNode> childList;
 
     public TrieNode() {
         this.indexList = new ArrayList<>();
+        this.childList = new ArrayList<>();
+        for (int i = 0; i < 26; i++) {
+            this.childList.add(null);
+        }
     }
 
-    public void addIndex(int _index) {
-        Integer index = new Integer(_index);
-        this.indexList.add(index);
+    TrieNode getNextNode(char _char) {
+        int ascii = _char;
+        int _a = 'a';
+        ascii -= _a;
+        return this.childList.get(ascii);
+    }
+
+    TrieNode newNode(int myIndex, int limit, char _char) {
+        int ascii = _char;
+        int _a = 'a';
+        ascii -= _a;
+        TrieNode myNewNode = new TrieNode();
+        this.childList.set(ascii, myNewNode);
+        myNewNode.addIndex(myIndex, limit);
+        return myNewNode;
+    }
+
+    public ArrayList<Integer> getIndexList() {
+        return this.indexList;
+    }
+
+    public void addIndex(int _index, int _limit) {
+        if (this.indexList.size() < _limit) {
+            this.indexList.add(_index);
+        }
     }
 }

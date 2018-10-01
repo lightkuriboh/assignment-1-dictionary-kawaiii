@@ -27,44 +27,7 @@ class App extends Component<Props> {
             searchWord: 'Hieu dep trai',
             result: '',
             showingMenu: true,
-            hints: [
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'},
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'},
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'},
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'},
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'},
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'},
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'},
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'},
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'},
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'},
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'},
-                {key: 'beautiful'},
-                {key: 'pretty'},
-                {key: 'handsome'}
-            ],
+            hints: [],
             details: {
                 english: '',
                 vietnamese: '',
@@ -78,7 +41,17 @@ class App extends Component<Props> {
     onTextChange = (text) => {
         this.setState({
             searchWord: text
-        })
+        });
+        MyNativeModule.getHint(text, this.displayHints);
+    };
+
+    displayHints = (result) => {
+        let newJson = result.replace(/([a-zA-Z0-9]+?):/g, '"$1":');
+        newJson = newJson.replace(/'/g, '"');
+        let data = JSON.parse(newJson);
+        this.setState({
+            hints: data
+        });
     };
 
     greetUserCallBack = () => {
@@ -169,7 +142,7 @@ class App extends Component<Props> {
                     }
                 }>
                     <Text style={styles.about}>
-                        This UI designed by KuribohKute
+                        This UI is designed by KuribohKute
                     </Text>
                 </View>
             </View>

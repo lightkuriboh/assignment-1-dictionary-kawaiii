@@ -75,24 +75,10 @@ export default class EngViet extends React.Component {
                     </View>
                     <View style = {styles.detailLayout}>
                         <Card>
-                            <CardItem header bordered>
-                                <Text>
-                                    Word Details
-                                </Text>
-                            </CardItem>
-                            <CardItem cardBody style={{height:'70%'}}>
+                            <CardItem cardBody style={{height:'100%'}}>
                                 <ScrollView>
                                     <Text>{this.props.result}</Text>
                                 </ScrollView>
-                            </CardItem>
-                            <CardItem footer bordered style={styles.usefulOptions}>
-                                <CircleButton
-                                    iconButtonTop={iconSound}
-                                    iconButtonLeft={iconUpdate}
-                                    iconButtonRight={iconInsert}
-                                    iconButtonBottom={iconDelete}
-                                    onPressButtonTop={ () => {this.speakSearchWord()} }
-                                />
                             </CardItem>
                         </Card>
                     </View>

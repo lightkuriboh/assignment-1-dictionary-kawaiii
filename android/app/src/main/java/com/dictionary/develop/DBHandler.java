@@ -63,7 +63,7 @@ public class DBHandler extends SQLiteAssetHelper {
             this.myHints.addMoreWord(cursor.getString(0));
             cursor.moveToNext();
         }
-        this.myHints.initTrie();
+        this.myHints.initData();
     }
 
     public String getData(String searchWord) {
