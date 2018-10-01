@@ -20,13 +20,12 @@ public class TrieNode {
         return this.childList.get(ascii);
     }
 
-    TrieNode newNode(int myIndex, int limit, char _char) {
+    TrieNode newNode(char _char) {
         int ascii = _char;
         int _a = 'a';
         ascii -= _a;
         TrieNode myNewNode = new TrieNode();
         this.childList.set(ascii, myNewNode);
-        myNewNode.addIndex(myIndex, limit);
         return myNewNode;
     }
 

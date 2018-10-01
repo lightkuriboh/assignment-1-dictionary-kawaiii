@@ -16,9 +16,10 @@ public class Trie {
             if ('a' <= curChar && curChar <= 'z') {
                 TrieNode nextNode = curNode.getNextNode(curChar);
                 if (nextNode == null) {
-                    nextNode = curNode.newNode(index, this.limitNumWordEachNode, curChar);
+                    nextNode = curNode.newNode(curChar);
                 }
                 curNode = nextNode;
+                curNode.addIndex(index, this.limitNumWordEachNode);
             }
         }
     }

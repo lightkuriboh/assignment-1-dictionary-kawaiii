@@ -24,11 +24,15 @@ public class HintManagement {
     }
 
     public String getHint(String word) {
+        final String[] metaCharacters = {"\"", "'", "{", "}", "[", "]", "(", ")"};
         ArrayList<Integer> getList = this.myTrie.searchWord(word);
         String ans = "";
         ans += "[";
         for (int i = 0; i < getList.size(); i++) {
             String myWord = this.myListWord.get(getList.get(i));
+            for (String sp: metaCharacters) {
+                myWord = myWord.replace(sp, "\\" + sp);
+            }
             String cur = "{key:'";
             cur += myWord;
             cur += "'}";
@@ -37,6 +41,7 @@ public class HintManagement {
             }
             ans += cur;
         }
+
         ans += "]";
         return ans;
     }
