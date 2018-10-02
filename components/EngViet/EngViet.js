@@ -25,6 +25,7 @@ export default class EngViet extends React.Component {
     };
 
     speakSearchWord = () => {
+        alert('fuck');
         tts.getInitStatus().then(() => {
             tts.speak(this.props.searchWord);
         }, (err) => {
@@ -99,25 +100,39 @@ export default class EngViet extends React.Component {
                     </View>
                     <View style = {styles.detailLayout}>
                         <Card>
-                            <CardItem cardBody style={{height:'90%'}}>
+                            <CardItem cardBody style={{height:'80%'}}>
                                 <ScrollView>
                                     <Text>{this.props.result}</Text>
                                 </ScrollView>
                             </CardItem>
-                            <CardItem footer>
+                            <CardItem footer style={{height:'20%'}}>
                                 <Item style={{justifyContent: 'center'}}>
-                                    <Button success><Text>Insert</Text></Button>
+                                    <Button
+                                        small
+                                        success
+                                    >
+                                        <Text>Insert</Text>
+                                    </Button>
                                     <Text>    </Text>
                                     <Button
+                                        small
                                         danger
                                         onPress={() => this.setState({deleteVisible: true})}
-                                    ><Text>Delete</Text></Button>
-                                    <Text>    </Text>
-                                    <Button warning><Text>Modify</Text></Button>
+                                    >
+                                        <Text>Delete</Text>
+                                    </Button>
                                     <Text>    </Text>
                                     <Button
+                                        warning
+                                        small
+                                    >
+                                        <Text>Modify</Text>
+                                    </Button>
+                                    <Text>    </Text>
+                                    <Button
+                                        small
                                         primary
-                                        onPress={() => this.speakSearchWord}
+                                        onPress={() => this.speakSearchWord()}
                                     >
                                         <Icon name='md-mic'/>
                                     </Button>

@@ -144,18 +144,6 @@ class App extends Component<Props> {
                         deleteResult = {this.state.deleteActionResult}
                     />
                 </View>
-                <View style={
-                    {
-                        flex: 0.3,
-                        backgroundColor: '#adebeb',
-                        width: '100%',
-                        justifyContent: 'center',
-                    }
-                }>
-                    <Text style={styles.about}>
-                        This UI is designed by KuribohKute
-                    </Text>
-                </View>
             </View>
         );
     }
