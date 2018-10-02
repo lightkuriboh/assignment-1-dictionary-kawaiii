@@ -25,7 +25,8 @@ export default class EngViet extends React.Component {
     };
 
     speakSearchWord = () => {
-        alert('fuck');
+
+
         tts.getInitStatus().then(() => {
             tts.speak(this.props.searchWord);
         }, (err) => {
@@ -33,6 +34,8 @@ export default class EngViet extends React.Component {
                 tts.requestInstallEngine();
             }
         });
+        tts.stop();
+
     };
 
     itemWordChosen = (word) => {
@@ -48,9 +51,10 @@ export default class EngViet extends React.Component {
         });
         if (word.toLowerCase() === "y") {
             let myWord = this.props.searchWord;
+            this.props.onDelete(myWord);
             let that = this;
-            setTimeout(function(){that.props.onDelete(myWord)}, 1000);
-            alert(this.props.deleteResult);
+            setTimeout(function(){alert(that.props.deleteResult);}, 1000);
+
         }
     };
 

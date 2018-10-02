@@ -79,8 +79,7 @@ export default class Menu extends React.Component {
                         onSearch={() => this.props.onSearch()}
                         onChoose={(word) => this.props.onChoose(word)}
                         makeInvisible={() => this.makeInvisible()}
-                        searchWord={this.state.searchWord}
-                        details={this.props.details}
+                        searchWord={this.props.searchWord}
                         hints={this.props.hints}
                         result={this.props.result}
 

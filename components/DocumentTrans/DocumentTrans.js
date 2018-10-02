@@ -59,13 +59,6 @@ export default class TextArea extends Component {
                         </ScrollView>
                     </View>
                 </View>
-                <View style = {styles.footer}>
-                    <Button rounded warning
-                            onPress = {this.props.makeInvisible}
-                    >
-                        <Text>Back</Text>
-                    </Button>
-                </View>
             </View>
         );
     }

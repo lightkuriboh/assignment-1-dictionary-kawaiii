@@ -139,7 +139,6 @@ class App extends Component<Props> {
                         showingMenu = {this.state.showingMenu}
                         makeMenuVanish = {this.makeMenuVanish}
 
-
                         onDelete = {(word) => this.deleteWord(word)}
                         deleteResult = {this.state.deleteActionResult}
                     />
