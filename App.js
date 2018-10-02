@@ -28,12 +28,10 @@ class App extends Component<Props> {
             result: '',
             showingMenu: true,
             hints: [],
-            details: {
-                english: '',
-                vietnamese: '',
-                pronunciation: ''
-            },
-            renderingSearchForm: false
+            renderingSearchForm: false,
+            deleteActionResult: '',
+            insertActionResult: '',
+            updateActionResult: ''
         });
         MyNativeModule.initData();
     };
@@ -69,6 +67,16 @@ class App extends Component<Props> {
         MyNativeModule.greetUser(word, this.displayResult);
         this.setState({
             searchWord: word
+        });
+    };
+
+    deleteWord = (word) => {
+        MyNativeModule.deleteWord(word, this.displayDeleteResult);
+    };
+
+    displayDeleteResult = (result) => {
+        this.setState({
+            deleteActionResult: result
         });
     };
 
@@ -126,11 +134,14 @@ class App extends Component<Props> {
                         onSearch = {() => this.greetUserCallBack()}
                         onChoose = {(word) => this.onChooseWord(word)}
                         searchWord = {this.state.searchWord}
-                        details = {this.state.details}
                         hints = {this.state.hints}
                         result = {this.state.result}
                         showingMenu = {this.state.showingMenu}
                         makeMenuVanish = {this.makeMenuVanish}
+
+
+                        onDelete = {(word) => this.deleteWord(word)}
+                        deleteResult = {this.state.deleteActionResult}
                     />
                 </View>
                 <View style={

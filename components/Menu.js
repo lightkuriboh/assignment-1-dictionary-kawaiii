@@ -83,6 +83,9 @@ export default class Menu extends React.Component {
                         details={this.props.details}
                         hints={this.props.hints}
                         result={this.props.result}
+
+                        onDelete = {(word) => this.props.onDelete(word)}
+                        deleteResult = {this.props.deleteResult}
                     />
                 )
             } else if (this.state.myAction === '2') {

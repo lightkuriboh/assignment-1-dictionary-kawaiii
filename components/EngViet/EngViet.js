@@ -1,13 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, FlatList} from 'react-native';
-import CircleButton from 'react-native-circle-button';
 import { Button, Text, Form, Input, Item, Card, CardItem, Icon } from 'native-base';
-import iconSound from '../../images/sound.png';
-import iconDelete from '../../images/delete.png';
-import iconInsert from '../../images/insert.png';
-import iconUpdate from '../../images/update.png';
-import Tts from 'react-native-tts';
-Tts.setDefaultLanguage('en-IE');
+import Prompt from 'react-native-input-prompt';
+import tts from 'react-native-tts';
 
 export default class EngViet extends React.Component {
 
@@ -15,7 +10,10 @@ export default class EngViet extends React.Component {
         super(props);
         this.state = {
             inputText: props.searchWord,
-            myChosen: ''
+            myChosen: '',
+            insertVisible: false,
+            deleteVisible: false,
+            updateVisible: false
         };
     }
 
@@ -27,7 +25,13 @@ export default class EngViet extends React.Component {
     };
 
     speakSearchWord = () => {
-        Tts.speak(this.props.searchWord);
+        tts.getInitStatus().then(() => {
+            tts.speak(this.props.searchWord);
+        }, (err) => {
+            if (err.code === 'no_engine') {
+                tts.requestInstallEngine();
+            }
+        });
     };
 
     itemWordChosen = (word) => {
@@ -37,9 +41,28 @@ export default class EngViet extends React.Component {
         this.props.onChoose(word);
     };
 
+    confirmDeleteWord = (word) => {
+        this.setState({
+            deleteVisible: false
+        });
+        if (word.toLowerCase() === "y") {
+            let myWord = this.props.searchWord;
+            let that = this;
+            setTimeout(function(){that.props.onDelete(myWord)}, 1000);
+            alert(this.props.deleteResult);
+        }
+    };
+
     render() {
         return (
             <View style = {styles.mainContainer}>
+                <Prompt
+                    title={'Delete This Word'}
+                    visible={this.state.deleteVisible}
+                    placeholder={"y/n"}
+                    onSubmit={(text) => this.confirmDeleteWord(text)}
+                    onCancel={() => this.setState({deleteVisible: false})}
+                />
                 <View style={styles.mainContent}>
                     <View style={styles.searchLayout}>
                         <View style={styles.searchForm}>
@@ -64,6 +87,7 @@ export default class EngViet extends React.Component {
                                         this.props.hints
                                     }
                                     renderItem = {({item}) => <View style={styles.listContainer}><Button
+                                        small
                                         block
                                         bordered
                                         primary
@@ -75,10 +99,29 @@ export default class EngViet extends React.Component {
                     </View>
                     <View style = {styles.detailLayout}>
                         <Card>
-                            <CardItem cardBody style={{height:'100%'}}>
+                            <CardItem cardBody style={{height:'90%'}}>
                                 <ScrollView>
                                     <Text>{this.props.result}</Text>
                                 </ScrollView>
+                            </CardItem>
+                            <CardItem footer>
+                                <Item style={{justifyContent: 'center'}}>
+                                    <Button success><Text>Insert</Text></Button>
+                                    <Text>    </Text>
+                                    <Button
+                                        danger
+                                        onPress={() => this.setState({deleteVisible: true})}
+                                    ><Text>Delete</Text></Button>
+                                    <Text>    </Text>
+                                    <Button warning><Text>Modify</Text></Button>
+                                    <Text>    </Text>
+                                    <Button
+                                        primary
+                                        onPress={() => this.speakSearchWord}
+                                    >
+                                        <Icon name='md-mic'/>
+                                    </Button>
+                                </Item>
                             </CardItem>
                         </Card>
                     </View>
@@ -111,7 +154,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     searchLayout: {
-        flex: 1.25,
+        flex: 2.25,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         padding: 20,
