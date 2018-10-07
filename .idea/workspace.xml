@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1b0c711b-5b42-40e0-b181-6d2e79e059c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JavaFXApp.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JavaFXApp2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assignment-1-dictionary-kawaiii.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/controlsfx_8_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DictionaryFX.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/DocumentTranslate/DocumentTranslate.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DictionaryFX/sample/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/DBHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/HintManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/Trie/Trie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/Trie/TrieNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/WordTranslate.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/aWord.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/sample.fxml" beforeDir="false" />
-    </list>
+    <list default="true" id="1b0c711b-5b42-40e0-b181-6d2e79e059c4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +31,7 @@
         <counts>
           <entry key="class" value="1" />
           <entry key="fxml" value="1" />
+          <entry key="gitignore" value="1" />
           <entry key="java" value="33" />
           <entry key="js" value="2" />
           <entry key="json" value="1" />
@@ -68,6 +43,7 @@
           <entry key="JAVA" value="33" />
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="2" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
@@ -304,16 +280,15 @@
       <workItem from="1538885590887" duration="522000" />
       <workItem from="1538886141519" duration="276000" />
       <workItem from="1538902163005" duration="4386000" />
-      <workItem from="1538906839083" duration="1293000" />
+      <workItem from="1538906839083" duration="1314000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15107000" />
+    <option name="totallyTimeSpent" value="15128000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1488" height="878" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1488" height="878" extended-state="6" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27380952" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -411,13 +386,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/WordTranslate/Trie/Trie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/WordTranslate/aWord.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -434,6 +402,16 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/WordTranslate/Trie/Trie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/WordTranslate/HintManager.java">
       <provider selected="true" editor-type-id="text-editor">
