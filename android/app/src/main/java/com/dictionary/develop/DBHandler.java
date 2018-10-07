@@ -20,7 +20,6 @@ public class DBHandler extends SQLiteAssetHelper {
     public SQLiteDatabase my_db;
 
 
-
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
