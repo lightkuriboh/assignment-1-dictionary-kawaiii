@@ -1,4 +1,5 @@
 package sample.WordTranslate;
+
 import java.util.ArrayList;
 
 public class WordTranslate {
@@ -20,4 +21,5 @@ public class WordTranslate {
     public ArrayList<String> getHints(String word) {
         return this.myHintManager.getHints(word);
     }
+
 }

@@ -1,7 +1,8 @@
 package sample.WordTranslate;
 
+import sample.WordTranslate.Word.*;
+
 import java.sql.*;
-import java.util.ArrayList;
 
 public class DBHandler {
 

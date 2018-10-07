@@ -3,19 +3,25 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 
+import javafx.scene.input.MouseEvent;
 import sample.DocumentTranslate.DocumentTranslate;
 import sample.WordTranslate.WordTranslate;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
+import sample.Speaker;
+
 public class Controller implements Initializable {
+
+    Speaker textSpeaker;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -25,6 +31,8 @@ public class Controller implements Initializable {
 
         this.myDocumentTranslate  = new DocumentTranslate();
         this.myWordTranslate  = new WordTranslate();
+
+        this.textSpeaker = new Speaker();
     }
 
     @FXML
@@ -43,7 +51,7 @@ public class Controller implements Initializable {
 
 
     @FXML
-    private ListView<String> Hints;
+    private ListView<Label> Hints;
 
     @FXML
     private TextField searchBar;
@@ -61,11 +69,25 @@ public class Controller implements Initializable {
 
     public void textChangeInput(final String word) {
 
-        ObservableList<String> listHints = FXCollections.observableArrayList();
+        ObservableList<Label> listHints = FXCollections.observableArrayList();
 
-        listHints.addAll(this.myWordTranslate.getHints(word));
+        ArrayList<String> myHints = this.myWordTranslate.getHints(word);
+        for (String hint: myHints) {
+            Label myLabel = new Label(hint);
+            myLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    System.out.println(hint);
+                    textSpeaker.speak(hint);
+                }
+            });
+            myLabel.setMaxWidth(Double.MAX_VALUE);
+            myLabel.setAlignment(Pos.CENTER);
+            listHints.add(myLabel);
+        }
 
         this.Hints.setItems(listHints);
+
     }
 
 }

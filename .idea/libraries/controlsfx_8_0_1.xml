@@ -4,6 +4,13 @@
       <root url="jar://$PROJECT_DIR$/lib/controlsfx-8.0.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/fontawesomefx-8.9.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/sqlite-jdbc-3.23.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/tts/freetts.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/tts/freetts-jsapi10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/tts/cmu_us_kal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/tts/en_us.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/tts/mbrola.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/tts/cmu_time_awb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/tts/jsapi.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
