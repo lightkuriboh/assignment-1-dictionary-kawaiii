@@ -66,4 +66,6 @@ public class DBHandler {
         return res;
     }
 
+    public void insertWord()
+
 }

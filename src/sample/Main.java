@@ -13,9 +13,9 @@ import sample.WordTranslate.Trie.TrieNode;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Main {
+public class Main extends Application{
 
-    /*@Override
+    @Override
     public void start(Stage primaryStage) throws Exception{
         try {
             Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -25,7 +25,7 @@ public class Main {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-    }*/
+    }
 
 
     public static void main(String[] args) throws SQLException {
@@ -33,10 +33,7 @@ public class Main {
         DBHandler myDBHandler = new DBHandler();
 
         myDBHandler.init(myTrie);
-        ArrayList<Integer> result= myTrie.searchWord("a");
-        for(Integer i:result) {
-            System.out.println(myDBHandler.getWord(i).getEnglish());
-        }
-        //launch(args);
+        myDBHandler.release();
+        launch(args);
     }
 }
