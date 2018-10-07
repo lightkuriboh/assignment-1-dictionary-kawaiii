@@ -1,17 +1,18 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import javafx.scene.input.InputEvent;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.input.InputMethodTextRun;
 import sample.DocumentTranslate.DocumentTranslate;
 import sample.WordTranslate.WordTranslate;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -21,6 +22,9 @@ public class Controller implements Initializable {
         this.searchBar.textProperty().addListener((obs, oldText, newText) -> {
             this.textChangeInput(newText);
         });
+
+        this.myDocumentTranslate  = new DocumentTranslate();
+        this.myWordTranslate  = new WordTranslate();
     }
 
     @FXML
@@ -29,7 +33,7 @@ public class Controller implements Initializable {
     @FXML
     private TextArea translatedText;
 
-    private DocumentTranslate myDocumentTranslate = new DocumentTranslate();
+    private DocumentTranslate myDocumentTranslate;
 
     public void submitDocument(ActionEvent event) {
         String document = this.searchDoc.getText();
@@ -39,7 +43,7 @@ public class Controller implements Initializable {
 
 
     @FXML
-    private ListView Hints;
+    private ListView<String> Hints;
 
     @FXML
     private TextField searchBar;
@@ -47,7 +51,7 @@ public class Controller implements Initializable {
     @FXML
     private Label wordDetails;
 
-    private WordTranslate myWordTranslate = new WordTranslate();
+    private WordTranslate myWordTranslate;
 
     public void submitSearchWord(ActionEvent event) {
         String word = this.searchBar.getText();
@@ -55,8 +59,13 @@ public class Controller implements Initializable {
         this.wordDetails.textProperty().setValue(word);
     }
 
-    public void textChangeInput(String word) {
+    public void textChangeInput(final String word) {
 
+        ObservableList<String> listHints = FXCollections.observableArrayList();
+
+        listHints.addAll(this.myWordTranslate.getHints(word));
+
+        this.Hints.setItems(listHints);
     }
 
 }

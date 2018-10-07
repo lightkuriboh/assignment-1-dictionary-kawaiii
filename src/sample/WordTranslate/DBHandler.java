@@ -1,13 +1,19 @@
 package sample.WordTranslate;
-import sample.WordTranslate.Trie.Trie;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class DBHandler {
+
+    public DBHandler() {
+        this.conn  = this.getConnect(
+                "jdbc:sqlite:/home/kurikute/workspace/programming/java/DictionaryFX/data/dictionary.db"
+        );
+    }
+
     private String ins = "INSERT INTO minhpro99(idx, English, Vietnamese, pronunciation) VALUES(?, ?, ?, ?)";
 
-    private Connection conn = this.getConnect("jdbc:sqlite:D:/minhhh/python/dictionary1.db");
+    private Connection conn;
 
 
     public Connection getConnect(String url) {
@@ -28,26 +34,30 @@ public class DBHandler {
         return conn;
     }
 
-    public void release() throws SQLException {
-        conn.close();
+    public void release() {
+        try {
+            this.conn.close();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
-    public void init(Trie myTrie) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement(ins);
-        Statement st = conn.createStatement();
-        String sql = "SELECT english FROM minhpro99";
-        ResultSet rs = st.executeQuery(sql);
-        int cur=0;
-        conn.setAutoCommit(false);
-        while (rs.next()) {
-            //int x = rs.getInt("idx");
-            String y = new String(rs.getString("english"));
-            //String z = new String(rs.getString("vietnamese"));
-            //String t = new String(rs.getString("pronunciation"));
-            cur++;
-            myTrie.insertWord(cur,y);
+    public void initHint(HintManager myHintManager) {
+        try {
+            PreparedStatement ps = this.conn.prepareStatement(ins);
+            Statement st = this.conn.createStatement();
+            String sql = "SELECT english FROM minhpro99";
+            ResultSet rs = st.executeQuery(sql);
+            int cur = 0;
+            this.conn.setAutoCommit(false);
+            while (rs.next()) {
+                String y = new String(rs.getString("english"));
+                myHintManager.addMoreWord(y);
+            }
+            myHintManager.initData();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
-        System.out.println(cur);
     }
 
     public aWord getWord(Integer idx) throws SQLException{
@@ -66,6 +76,8 @@ public class DBHandler {
         return res;
     }
 
-    public void insertWord()
+    public void insertWord() {
+
+    }
 
 }

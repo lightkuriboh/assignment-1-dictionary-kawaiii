@@ -3,7 +3,12 @@ import sample.WordTranslate.Trie.Trie;
 import java.util.ArrayList;
 
 public class HintManager {
-    private Trie myTrie = new Trie();
+
+    private Trie myTrie;
+
+    public HintManager () {
+        this.myTrie = new Trie();
+    }
 
     private ArrayList<String> myListWord = new ArrayList<>();
 
@@ -16,6 +21,20 @@ public class HintManager {
             String word = this.myListWord.get(i);
             this.myTrie.insertWord(i, word);
         }
+    }
+
+    public ArrayList<String> getHints(String word) {
+
+        ArrayList<String> ans = new ArrayList<>();
+
+        ArrayList<Integer> getIndex = this.myTrie.searchWord(word);
+        for (int index: getIndex) {
+            ans.add(this.myListWord.get(index));
+        }
+
+        ans.add("one");
+
+        return ans;
     }
 
 }

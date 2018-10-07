@@ -2,7 +2,7 @@ package sample.WordTranslate.Trie;
 import java.util.ArrayList;
 
 public class Trie {
-    private final int limitNumWordEachNode = 20;
+    private final int limitNumWordEachNode = 30;
     private TrieNode rootNode;
 
     public Trie() {
