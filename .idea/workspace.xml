@@ -2,10 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b0c711b-5b42-40e0-b181-6d2e79e059c4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JavaFXApp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JavaFXApp2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assignment-1-dictionary-kawaiii.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/controlsfx_8_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DictionaryFX.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/DocumentTranslate/DocumentTranslate.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DictionaryFX/sample/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/WordTranslate/DBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/WordTranslate/DBHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/DBHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/HintManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/Trie/Trie.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/Trie/TrieNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/WordTranslate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/WordTranslate/aWord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DictionaryFX/sample/sample.fxml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +57,7 @@
         <counts>
           <entry key="class" value="1" />
           <entry key="fxml" value="1" />
-          <entry key="java" value="32" />
+          <entry key="java" value="33" />
           <entry key="js" value="2" />
           <entry key="json" value="1" />
         </counts>
@@ -44,7 +65,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="32" />
+          <entry key="JAVA" value="33" />
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="2" />
           <entry key="XML" value="1" />
@@ -76,14 +97,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/WordTranslate/DBHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1088">
-              <caret line="68" column="27" lean-forward="true" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
+              <caret line="68" column="27" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sample/WordTranslate/HintManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -100,7 +130,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/WordTranslate/Trie/TrieNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
+            <state relative-caret-position="391">
               <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
             </state>
           </provider>
@@ -163,6 +193,7 @@
     <option name="width" value="1944" />
     <option name="height" value="1104" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -273,12 +304,12 @@
       <workItem from="1538885590887" duration="522000" />
       <workItem from="1538886141519" duration="276000" />
       <workItem from="1538902163005" duration="4386000" />
-      <workItem from="1538906839083" duration="574000" />
+      <workItem from="1538906839083" duration="1293000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14388000" />
+    <option name="totallyTimeSpent" value="15107000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1488" height="878" extended-state="7" />
@@ -303,7 +334,7 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32882273" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Android Profiler" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.32885906" />
@@ -338,13 +369,6 @@
     <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/dictionary/develop/DBHandler.java" />
     <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/dictionary/develop/Trie/Trie.java" />
     <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/dictionary/develop/Trie/TrieNode.java" />
-    <entry file="file://$PROJECT_DIR$/src/sample/WordTranslate/HintManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DocumentTranslate/DocumentTranslate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -382,7 +406,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/WordTranslate/Trie/TrieNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="391">
           <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
         </state>
       </provider>
@@ -404,10 +428,17 @@
     <entry file="file://$PROJECT_DIR$/src/sample/WordTranslate/DBHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1088">
-          <caret line="68" column="27" lean-forward="true" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
+          <caret line="68" column="27" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/WordTranslate/HintManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
