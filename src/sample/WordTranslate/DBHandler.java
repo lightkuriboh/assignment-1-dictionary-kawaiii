@@ -6,9 +6,12 @@ import java.sql.*;
 
 public class DBHandler {
 
+    final String HieuURL = "/home/kurikute/workspace/programming/java/DictionaryFX/data/dictionary.db";
+    final String MinhURL = "C:/Users/MSI/Documents/GitHub/assignment-1-dictionary-kawaiii/data/dictionary.db";
+
     public DBHandler() {
         this.conn  = this.getConnect(
-                "jdbc:sqlite:C:/Users/MSI/Documents/GitHub/assignment-1-dictionary-kawaiii/data/dictionary.db"
+                "jdbc:sqlite:" + this.HieuURL
         );
     }
 
