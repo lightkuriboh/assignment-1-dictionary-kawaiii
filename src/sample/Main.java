@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import sample.WordTranslate.DBHandler;
+import sample.WordTranslate.HintManager;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,8 +27,7 @@ public class Main extends Application{
     }
 
 
-    public static void main(String[] args) throws SQLException {
-
+    public static void main(String[] args) {
         launch(args);
     }
 }
