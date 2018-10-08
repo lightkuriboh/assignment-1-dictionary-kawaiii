@@ -8,7 +8,7 @@ public class DBHandler {
 
     public DBHandler() {
         this.conn  = this.getConnect(
-                "jdbc:sqlite:/home/kurikute/workspace/programming/java/DictionaryFX/data/dictionary.db"
+                "jdbc:sqlite:C:/Users/MSI/Documents/GitHub/assignment-1-dictionary-kawaiii/data/dictionary.db"
         );
     }
 

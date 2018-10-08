@@ -47,6 +47,7 @@ public class Controller implements Initializable {
         String document = this.searchDoc.getText();
         String translated = this.myDocumentTranslate.translateIt("en", "vi", document);
         this.translatedText.textProperty().setValue(translated);
+        this.textSpeaker.speak(document);
     }
 
 
