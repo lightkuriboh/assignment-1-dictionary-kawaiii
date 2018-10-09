@@ -72,25 +72,12 @@ public class DBHandler {
             System.out.println(ex.getMessage());
         }
     }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public aWord getWord(String english) throws SQLException{
-        PreparedStatement ps = conn.prepareStatement(ins);
-        Statement st = conn.createStatement();
-        String sql = "SELECT idx, english, vietnamese, pronunciation FROM minhpro99 WHERE english = "+english;
-=======
     public aWord getWord(String englishWord) throws SQLException{
         PreparedStatement ps = conn.prepareStatement(ins);
         Statement st = conn.createStatement();
         String sql = "SELECT idx, english, vietnamese, pronunciation FROM minhpro99 WHERE english = "+englishWord;
->>>>>>> a490adae5973bd4b40f2eab0ffd9be72fcce6183
-=======
-    public aWord getWord(Integer idx) throws SQLException{
-        PreparedStatement ps = conn.prepareStatement(ins);
-        Statement st = conn.createStatement();
-        String sql = "SELECT idx, english, vietnamese, pronunciation FROM minhpro99 WHERE idx = "+Integer.toString(idx);
->>>>>>> parent of 43c0c2a... xx
+
+
         ResultSet rs = st.executeQuery(sql);
         aWord res = new aWord();
         while (rs.next()) {
