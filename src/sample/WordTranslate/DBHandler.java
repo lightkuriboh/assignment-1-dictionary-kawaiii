@@ -12,11 +12,12 @@ public class DBHandler {
 
     public DBHandler() {
         this.conn  = this.getConnect(
-                "jdbc:sqlite:" + this.MinhURL
+                "jdbc:sqlite:" + this.HieuURL
         );
     }
 
     private String ins = "INSERT INTO minhpro99(idx, english, vietnamese, pronunciation, available) VALUES(?, ?, ?, ?, ?)";
+    private String sel = "SELECT * FROM minhpro99 WHERE english = ?";
 
     private Connection conn;
 
@@ -41,14 +42,6 @@ public class DBHandler {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (conn==null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
         }
         return conn;
     }
@@ -80,10 +73,10 @@ public class DBHandler {
         }
     }
 
-    public aWord getWord(Integer idx) throws SQLException{
+    public aWord getWord(String englishWord) throws SQLException{
         PreparedStatement ps = conn.prepareStatement(ins);
         Statement st = conn.createStatement();
-        String sql = "SELECT idx, english, vietnamese, pronunciation FROM minhpro99 WHERE idx = "+Integer.toString(idx);
+        String sql = "SELECT idx, english, vietnamese, pronunciation FROM minhpro99 WHERE english = "+englishWord;
         ResultSet rs = st.executeQuery(sql);
         aWord res = new aWord();
         while (rs.next()) {
@@ -92,6 +85,25 @@ public class DBHandler {
             String z = new String(rs.getString("vietnamese"));
             String t = new String(rs.getString("pronunciation"));
             res.setWord(x, y, z, t);
+        }
+        return res;
+    }
+
+    public String getStringWord(String englishWord) throws SQLException {
+
+        final String[] metaCharacters = {"\"", "'", "{", "}", "[", "]", "(", ")"};
+        for (String sp: metaCharacters) {
+            englishWord = englishWord.replace(sp, "\\" + sp);
+        }
+
+        Statement st = conn.createStatement();
+        String sql = "SELECT vietnamese, pronunciation FROM minhpro99 WHERE English = \"" + englishWord + "\"";
+        ResultSet rs = st.executeQuery(sql);
+        String res = "";
+        while (rs.next()) {
+            String z = new String(rs.getString("vietnamese"));
+            String t = new String(rs.getString("pronunciation"));
+            res += t + "\n" + z;
         }
         return res;
     }

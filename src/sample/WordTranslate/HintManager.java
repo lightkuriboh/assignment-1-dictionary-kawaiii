@@ -32,8 +32,6 @@ public class HintManager {
             ans.add(this.myListWord.get(index));
         }
 
-        ans.add("one");
-
         return ans;
     }
 
