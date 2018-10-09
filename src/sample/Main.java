@@ -6,11 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import sample.WordTranslate.DBHandler;
-import sample.WordTranslate.HintManager;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
+import javafx.application.Platform;
+import javafx.stage.WindowEvent;
+import javafx.event.EventHandler;
 
 public class Main extends Application{
 
@@ -21,6 +19,13 @@ public class Main extends Application{
             primaryStage.setTitle("Hello World");
             primaryStage.setScene(new Scene(root, 960, 640));
             primaryStage.show();
+            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    Platform.exit();
+                    System.exit(0);
+                }
+            });
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

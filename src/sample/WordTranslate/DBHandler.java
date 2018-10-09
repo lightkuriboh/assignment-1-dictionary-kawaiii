@@ -12,7 +12,7 @@ public class DBHandler {
 
     public DBHandler() {
         this.conn  = this.getConnect(
-                "jdbc:sqlite:" + this.HieuURL
+                "jdbc:sqlite:" + this.MinhURL
         );
     }
 
@@ -98,15 +98,16 @@ public class DBHandler {
         }
 
         Statement st = conn.createStatement();
-        String sql = "SELECT vietnamese, pronunciation FROM minhpro99 WHERE English = \"" + englishWord + "\"";
+        String sql = "SELECT vietnamese, pronunciation FROM minhpro99 WHERE english = \"" + englishWord + "\"";
         ResultSet rs = st.executeQuery(sql);
         String res = "";
         while (rs.next()) {
             String z = new String(rs.getString("vietnamese"));
             String t = new String(rs.getString("pronunciation"));
             res += t + "\n" + z;
+            return res;
         }
-        return res;
+        return "-1";
     }
 
 

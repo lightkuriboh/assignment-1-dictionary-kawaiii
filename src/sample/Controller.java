@@ -10,11 +10,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import sample.DocumentTranslate.DocumentTranslate;
+import sample.WordTranslate.DBHandler;
 import sample.WordTranslate.WordTranslate;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import sample.Speaker;
@@ -28,7 +31,6 @@ public class Controller implements Initializable {
         this.searchBar.textProperty().addListener((obs, oldText, newText) -> {
             this.textChangeInput(newText);
         });
-
         this.myDocumentTranslate  = new DocumentTranslate();
         this.myWordTranslate  = new WordTranslate();
 
@@ -58,14 +60,18 @@ public class Controller implements Initializable {
     private TextField searchBar;
 
     @FXML
-    private Label wordDetails;
+    private ListView wordDetails;
 
+    @FXML
+    private Label note;
+
+    @FXML
     private WordTranslate myWordTranslate;
 
     public void submitSearchWord(ActionEvent event) {
         String word = this.searchBar.getText();
         System.out.println(word);
-        this.wordDetails.textProperty().setValue(word);
+        this.displayDetails(word);
     }
 
     public void textChangeInput(final String word) {
@@ -78,7 +84,7 @@ public class Controller implements Initializable {
             myLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    wordDetails.textProperty().setValue(myWordTranslate.getDetails(hint));
+                    displayDetails(hint);
                     //textSpeaker.speak(hint);
                 }
             });
@@ -88,6 +94,81 @@ public class Controller implements Initializable {
         }
         this.Hints.setItems(listHints);
     }
+
+    public void displayDetails(String originalWord) {
+        ObservableList<Label> listDetails = FXCollections.observableArrayList();
+        String word = myWordTranslate.getDetails(originalWord);
+        String noteDetail = new String(originalWord + "\n");
+        Integer cur = 0;
+        Integer i = -1;
+        boolean nowExample = false;
+        String curWord = "";
+        while (i < word.length()-1) {
+            i++;
+            char chr = word.charAt(i);
+            if (chr == '*') {
+                cur = 1;
+                nowExample = false;
+                curWord = "";
+                continue;
+            }
+            if (chr == '-') {
+                cur = 2;
+                curWord = "";
+                nowExample = false;
+                continue;
+            }
+            if (chr == '=') {
+                cur = 3;
+                curWord = "";
+                continue;
+            }
+            if (chr == '@') {
+                cur = 4;
+                curWord = "Dạng khác: ";
+                continue;
+            }
+            if (cur == 0) {
+                noteDetail = noteDetail + chr;
+                continue;
+            }
+            if (chr != '\n') {
+                curWord = curWord + chr;
+                continue;
+            }
+            if (cur == 3) {
+                if (!nowExample) {
+                    nowExample = true;
+                    Label example = new Label("Example: ");
+                    example.setMaxWidth(Double.MAX_VALUE);
+                    example.setStyle("-fx-font-size: 15pt;");
+                    listDetails.add(example);
+                }
+                curWord ="\t" + curWord;
+            }
+            Label myLabel = new Label(curWord);
+            if (cur == 1) {
+                myLabel.setStyle("-fx-font-size: 15pt; -fx-font-weight: bold;");
+                myLabel.setTextFill(Color.RED);
+            }
+            if (cur == 2) {
+                myLabel.setStyle("-fx-font-size: 12pt; ");
+                myLabel.setTextFill(Color.BLUE);
+            }
+            if (cur == 3) {
+                myLabel.setStyle("-fx-font-size: 12pt; -fx-font-style: italic; ");
+                myLabel.setTextFill(Color.GREEN);
+            }
+            if (cur == 4) {
+                myLabel.setStyle("-fx-underline: true; -fx-font-size: 12pt; -fx-font-weight: bold; ");
+            }
+            listDetails.add(myLabel);
+        }
+        this.wordDetails.setItems(listDetails);
+        this.note.textProperty().setValue(noteDetail);
+
+    }
+
 
 
     /**
