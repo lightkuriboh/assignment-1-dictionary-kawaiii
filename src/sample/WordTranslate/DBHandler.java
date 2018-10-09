@@ -80,10 +80,10 @@ public class DBHandler {
         }
     }
 
-    public aWord getWord(Integer idx) throws SQLException{
+    public aWord getWord(String english) throws SQLException{
         PreparedStatement ps = conn.prepareStatement(ins);
         Statement st = conn.createStatement();
-        String sql = "SELECT idx, english, vietnamese, pronunciation FROM minhpro99 WHERE idx = "+Integer.toString(idx);
+        String sql = "SELECT idx, english, vietnamese, pronunciation FROM minhpro99 WHERE english = "+english;
         ResultSet rs = st.executeQuery(sql);
         aWord res = new aWord();
         while (rs.next()) {
@@ -98,7 +98,7 @@ public class DBHandler {
 
 
     public String insertWord(String english, String vietnamese, String pronun) {
-        String cmd = "SELECT idx, available FROM minhpro99 WHERE English = '"+english+"'";
+        String cmd = "SELECT idx, available FROM minhpro99 WHERE english = '"+english+"'";
         String cmdUpdate = "UPDATE minhpro99 SET vietnamese = ? , "
                 + "pronunciation = ?, "
                 + "available = ? "
@@ -139,7 +139,7 @@ public class DBHandler {
     }
 
     public String deleteWord(String english) throws SQLException{
-        String cmd = "SELECT idx, available FROM minhpro99 WHERE English = '"+english+"'";
+        String cmd = "SELECT idx, available FROM minhpro99 WHERE english = '"+english+"'";
         String cmdUpdate = "UPDATE minhpro99 SET available = ? "
                 + "WHERE idx = ?";
         try {
@@ -164,7 +164,7 @@ public class DBHandler {
     }
 
     public String updateWord(String english, String vietnamese, String pronun) throws  SQLException{
-        String cmd = "SELECT idx, available FROM minhpro99 WHERE English = '"+english+"'";
+        String cmd = "SELECT idx, available FROM minhpro99 WHERE english = '"+english+"'";
         String cmdUpdate = "UPDATE minhpro99 SET vietnamese = ? , "
                 + "pronunciation = ? "
                 + "WHERE idx = ?";
