@@ -15,11 +15,23 @@ public class WordTranslate {
 
         this.myDBHandler.initHint(this.myHintManager);
 
-        this.myDBHandler.release();
+        //this.myDBHandler.release();
     }
 
     public ArrayList<String> getHints(String word) {
         return this.myHintManager.getHints(word);
+    }
+
+    public String getDetails(String word) {
+        try {
+            return this.myDBHandler.getStringWord(word);
+        } catch (Exception ex ){
+            return ex.getMessage();
+        }
+    }
+
+    public void insertWord(String Eng, String Vie, String Pro) {
+        this.myDBHandler.insertWord(Eng, Vie, Pro);
     }
 
 }

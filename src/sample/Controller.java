@@ -79,17 +79,55 @@ public class Controller implements Initializable {
             myLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    System.out.println(hint);
-                    textSpeaker.speak(hint);
+                    wordDetails.textProperty().setValue(myWordTranslate.getDetails(hint));
+                    //textSpeaker.speak(hint);
                 }
             });
             myLabel.setMaxWidth(Double.MAX_VALUE);
             myLabel.setAlignment(Pos.CENTER);
             listHints.add(myLabel);
         }
-
         this.Hints.setItems(listHints);
-
     }
+
+
+    /**
+     * add more word
+     */
+    @FXML
+    TextField addE;
+    @FXML
+    TextField addV;
+    @FXML
+    TextField addP;
+
+    /**
+     *
+     * @return content of addE
+     */
+    public String getAddE() {
+        return addE.textProperty().getValue();
+    }
+
+    /**
+     *
+     * @return content of addV
+     */
+    public String getAddV() {
+        return addV.textProperty().getValue();
+    }
+
+    /**
+     *
+     * @return content of addP
+     */
+    public String getAddP() {
+        return addP.textProperty().getValue();
+    }
+
+    public void addNewWord() {
+        //this.myWordTranslate.insertWord(this.getAddE(), this.getAddV(), this.getAddP());
+    }
+
 
 }

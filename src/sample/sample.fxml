@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
@@ -23,13 +25,58 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="365.0" prefWidth="228.0">
                            <children>
                               <TextField fx:id="searchBar" layoutX="8.0" layoutY="7.0" onAction="#submitSearchWord" prefHeight="26.0" prefWidth="250.0" promptText="Enter your word here" />
+<<<<<<< HEAD
                               <ListView id="Hints" fx:id="Hints" editable="true"1 layoutY="33.0" prefHeight="560.0" prefWidth="263.0" />
+=======
+                              <ListView id="Hints" fx:id="Hints" editable="true" layoutY="40.0" prefHeight="553.0" prefWidth="263.0" />
+>>>>>>> a490adae5973bd4b40f2eab0ffd9be72fcce6183
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="429.0" prefWidth="486.0">
                            <children>
                               <Label fx:id="wordDetails" layoutX="19.0" layoutY="17.0" prefHeight="574.0" prefWidth="655.0" text="Label" />
-                           </children></AnchorPane>
+                              <TitledPane prefHeight="200.0" prefWidth="689.0" text="More option">
+                                 <content>
+                                    <Accordion>
+                                      <panes>
+                                        <TitledPane animated="false" text="Add new word">
+                                          <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="addE" layoutY="34.0" promptText="english word" />
+                                                      <TextArea fx:id="addV" layoutX="387.0" layoutY="5.0" prefHeight="85.0" prefWidth="290.0" promptText="Vietnamese description" />
+                                                      <TextField fx:id="addP" layoutX="191.0" layoutY="34.0" promptText="Pronunciation" />
+                                                      <Button layoutX="153.0" layoutY="67.0" mnemonicParsing="false" onAction="#addNewWord" text="Submit" />
+                                                   </children>
+                                                </AnchorPane>
+                                          </content>
+                                        </TitledPane>
+                                        <TitledPane animated="false" text="Delete word">
+                                          <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="delE" layoutX="85.0" layoutY="34.0" promptText="English Word" />
+                                                   </children>
+                                                </AnchorPane>
+                                          </content>
+                                        </TitledPane>
+                                        <TitledPane animated="false" text="Update word">
+                                          <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="updE" layoutX="14.0" layoutY="34.0" promptText="English Word" />
+                                                      <TextField fx:id="updP" layoutX="201.0" layoutY="34.0" promptText="Pronunciation" />
+                                                      <TextArea fx:id="ipdV" layoutX="390.0" layoutY="5.0" prefHeight="84.0" prefWidth="288.0" promptText="Vietnamese Description" />
+                                                   </children>
+                                                </AnchorPane>
+                                          </content>
+                                        </TitledPane>
+                                      </panes>
+                                    </Accordion>
+                                 </content>
+                              </TitledPane>
+                           </children>
+                      </AnchorPane>
                     </items>
                   </SplitPane>
                </children>
