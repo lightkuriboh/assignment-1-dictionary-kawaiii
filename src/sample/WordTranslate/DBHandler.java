@@ -74,6 +74,7 @@ public class DBHandler {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public aWord getWord(String english) throws SQLException{
         PreparedStatement ps = conn.prepareStatement(ins);
         Statement st = conn.createStatement();
@@ -84,6 +85,12 @@ public class DBHandler {
         Statement st = conn.createStatement();
         String sql = "SELECT idx, english, vietnamese, pronunciation FROM minhpro99 WHERE english = "+englishWord;
 >>>>>>> a490adae5973bd4b40f2eab0ffd9be72fcce6183
+=======
+    public aWord getWord(Integer idx) throws SQLException{
+        PreparedStatement ps = conn.prepareStatement(ins);
+        Statement st = conn.createStatement();
+        String sql = "SELECT idx, english, vietnamese, pronunciation FROM minhpro99 WHERE idx = "+Integer.toString(idx);
+>>>>>>> parent of 43c0c2a... xx
         ResultSet rs = st.executeQuery(sql);
         aWord res = new aWord();
         while (rs.next()) {
@@ -117,7 +124,7 @@ public class DBHandler {
 
 
     public String insertWord(String english, String vietnamese, String pronun) {
-        String cmd = "SELECT idx, available FROM minhpro99 WHERE english = '"+english+"'";
+        String cmd = "SELECT idx, available FROM minhpro99 WHERE English = '"+english+"'";
         String cmdUpdate = "UPDATE minhpro99 SET vietnamese = ? , "
                 + "pronunciation = ?, "
                 + "available = ? "
@@ -158,7 +165,7 @@ public class DBHandler {
     }
 
     public String deleteWord(String english) throws SQLException{
-        String cmd = "SELECT idx, available FROM minhpro99 WHERE english = '"+english+"'";
+        String cmd = "SELECT idx, available FROM minhpro99 WHERE English = '"+english+"'";
         String cmdUpdate = "UPDATE minhpro99 SET available = ? "
                 + "WHERE idx = ?";
         try {
@@ -183,7 +190,7 @@ public class DBHandler {
     }
 
     public String updateWord(String english, String vietnamese, String pronun) throws  SQLException{
-        String cmd = "SELECT idx, available FROM minhpro99 WHERE english = '"+english+"'";
+        String cmd = "SELECT idx, available FROM minhpro99 WHERE English = '"+english+"'";
         String cmdUpdate = "UPDATE minhpro99 SET vietnamese = ? , "
                 + "pronunciation = ? "
                 + "WHERE idx = ?";
