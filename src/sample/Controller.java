@@ -24,6 +24,8 @@ import sample.Speaker;
 
 public class Controller implements Initializable {
 
+    public String chosenWord = new String();
+
     Speaker textSpeaker;
 
     @Override
@@ -49,7 +51,7 @@ public class Controller implements Initializable {
         String document = this.searchDoc.getText();
         String translated = this.myDocumentTranslate.translateIt("en", "vi", document);
         this.translatedText.textProperty().setValue(translated);
-        this.textSpeaker.speak(document);
+//        this.textSpeaker.speak(document);
     }
 
 
@@ -63,14 +65,14 @@ public class Controller implements Initializable {
     private ListView wordDetails;
 
     @FXML
-    private Label note;
-
-    @FXML
     private WordTranslate myWordTranslate;
 
     public void submitSearchWord(ActionEvent event) {
+
         String word = this.searchBar.getText();
-        System.out.println(word);
+
+        this.chosenWord = word;
+
         this.displayDetails(word);
     }
 
@@ -85,7 +87,8 @@ public class Controller implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
                     displayDetails(hint);
-                    //textSpeaker.speak(hint);
+                    chosenWord = hint;
+//                    searchBar.textProperty().setValue(hint);
                 }
             });
             myLabel.setMaxWidth(Double.MAX_VALUE);
@@ -98,7 +101,8 @@ public class Controller implements Initializable {
     public void displayDetails(String originalWord) {
         ObservableList<Label> listDetails = FXCollections.observableArrayList();
         String word = myWordTranslate.getDetails(originalWord);
-        String noteDetail = new String(originalWord + "\n");
+        String noteDetail = new String();
+//        String noteDetail = new String(originalWord + "\n");
         Integer cur = 0;
         Integer i = -1;
         boolean nowExample = false;
@@ -164,11 +168,23 @@ public class Controller implements Initializable {
             }
             listDetails.add(myLabel);
         }
+
         this.wordDetails.setItems(listDetails);
-        this.note.textProperty().setValue(noteDetail);
+
+        noteDetail += "\n";
+        Label noteLabel = new Label(noteDetail);
+        noteLabel.setTextFill(Color.PURPLE);
+        noteLabel.setStyle("-fx-font-size: 15pt;");
+        listDetails.add(0, noteLabel);
 
     }
 
+    /**
+     * Speaker will read the chosen word
+     */
+    public void readWord() {
+        this.textSpeaker.speak(this.chosenWord);
+    }
 
 
     /**
@@ -207,7 +223,51 @@ public class Controller implements Initializable {
 
     public void addNewWord() {
         //this.myWordTranslate.insertWord(this.getAddE(), this.getAddV(), this.getAddP());
+        System.out.println(String.format("English: %s\nVietnamese: %s\nPronunciation: %s\n", this.getAddE(), this.getAddV(), this.getAddP()));
     }
 
+    @FXML
+    TextField delE;
+
+    public void deleteWord() {
+        //this.myWordTranslate.deleteWord(delE.textProperty().getValue());
+        System.out.println(String.format("English: %s\n", delE.textProperty().getValue()));
+    }
+
+    @FXML
+    TextField updE;
+    @FXML
+    TextArea updV;
+    @FXML
+    TextField updP;
+
+    /**
+     *
+     * @return content of addE
+     */
+    private String getUpdE() {
+        return updE.textProperty().getValue();
+    }
+
+    /**
+     *
+     * @return content of addV
+     */
+    public String getUpdV() {
+        return updV.textProperty().getValue();
+    }
+
+    /**
+     *
+     * @return content of addP
+     */
+    public String getUpdP() {
+        return updP.textProperty().getValue();
+    }
+
+    public void updateWord() {
+        //this.myWordTranslate.updateWord(this.getUpdE(), this.getUpdV(), this.getUpdP());
+        System.out.println(String.format("English: %s\nVietnamese: %s\nPronunciation: %s\n", this.getUpdE(), this.getUpdV(), this.getUpdP()));
+    }
 
 }

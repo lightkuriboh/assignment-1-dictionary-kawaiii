@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
@@ -15,7 +11,7 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <tabs>
     <Tab text="Search Word">
       <content>
@@ -32,21 +28,21 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="429.0" prefWidth="486.0">
                            <children>
-                              <Label fx:id="note" layoutX="16.0" layoutY="214.0" prefHeight="72.0" prefWidth="658.0" text="Label" />
-                              <TitledPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="689.0" text="More option">
+                              <ListView fx:id="wordDetails" layoutX="14.0" layoutY="65.0" prefHeight="492.0" prefWidth="663.0" />
+                              <TitledPane expanded="false" layoutX="14.0" layoutY="14.0" prefHeight="198.0" prefWidth="668.0" text="More option" textOverrun="CENTER_ELLIPSIS">
                                  <content>
                                     <Accordion>
                                       <panes>
                                         <TitledPane animated="false" text="Add new word">
                                           <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                   <children>
-                                                      <TextField fx:id="addE" layoutY="34.0" promptText="english word" />
-                                                      <TextField fx:id="addV" layoutX="387.0" layoutY="5.0" prefHeight="85.0" prefWidth="290.0" promptText="Vietnamese description" />
-                                                      <TextField fx:id="addP" layoutX="191.0" layoutY="34.0" promptText="Pronunciation" />
-                                                      <Button layoutX="153.0" layoutY="67.0" mnemonicParsing="false" onAction="#addNewWord" text="Submit" />
-                                                   </children>
-                                                </AnchorPane>
+                                               <children>
+                                                  <TextField fx:id="addE" layoutY="34.0" promptText="english word" />
+                                                  <TextField fx:id="addV" layoutX="387.0" layoutY="5.0" prefHeight="85.0" prefWidth="290.0" promptText="Vietnamese description" />
+                                                  <TextField fx:id="addP" layoutX="191.0" layoutY="34.0" promptText="Pronunciation" />
+                                                  <Button layoutX="153.0" layoutY="67.0" mnemonicParsing="false" onAction="#addNewWord" text="Submit" />
+                                               </children>
+                                            </AnchorPane>
                                           </content>
                                         </TitledPane>
                                         <TitledPane animated="false" text="Delete word">
@@ -54,6 +50,7 @@
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
                                                       <TextField fx:id="delE" layoutX="85.0" layoutY="34.0" promptText="English Word" />
+                                                      <Button layoutX="153.0" layoutY="67.0" mnemonicParsing="false" onAction="#deleteWord" text="Submit" />
                                                    </children>
                                                 </AnchorPane>
                                           </content>
@@ -64,7 +61,8 @@
                                                    <children>
                                                       <TextField fx:id="updE" layoutX="14.0" layoutY="34.0" promptText="English Word" />
                                                       <TextField fx:id="updP" layoutX="201.0" layoutY="34.0" promptText="Pronunciation" />
-                                                      <TextArea fx:id="ipdV" layoutX="390.0" layoutY="5.0" prefHeight="84.0" prefWidth="288.0" promptText="Vietnamese Description" />
+                                                      <TextArea fx:id="updV" layoutX="390.0" layoutY="5.0" prefHeight="84.0" prefWidth="288.0" promptText="Vietnamese Description" />
+                                                      <Button layoutX="153.0" layoutY="67.0" mnemonicParsing="false" onAction="#updateWord" text="Submit" />
                                                    </children>
                                                 </AnchorPane>
                                           </content>
@@ -73,7 +71,8 @@
                                     </Accordion>
                                  </content>
                               </TitledPane>
-                              <ListView fx:id="wordDetails" layoutX="14.0" layoutY="289.0" prefHeight="281.0" prefWidth="663.0" />
+                              <Button layoutX="14.0" layoutY="565.0" mnemonicParsing="false" onAction="#readWord" text="Speak" />
+
                            </children>
                       </AnchorPane>
                     </items>

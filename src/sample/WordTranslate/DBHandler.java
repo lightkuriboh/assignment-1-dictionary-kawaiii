@@ -12,7 +12,7 @@ public class DBHandler {
 
     public DBHandler() {
         this.conn  = this.getConnect(
-                "jdbc:sqlite:" + this.MinhURL
+                "jdbc:sqlite:" + this.HieuURL
         );
     }
 

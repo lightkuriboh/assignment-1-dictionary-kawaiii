@@ -34,4 +34,20 @@ public class WordTranslate {
         this.myDBHandler.insertWord(Eng, Vie, Pro);
     }
 
+    public void deleteWord(String word) {
+        try {
+            this.myDBHandler.deleteWord(word);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void updateWord(String Eng, String Vie, String Pro) {
+        try {
+            this.myDBHandler.updateWord(Eng, Vie, Pro);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
 }
