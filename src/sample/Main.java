@@ -17,7 +17,7 @@ public class Main extends Application{
         try {
             Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
             primaryStage.setTitle("Hello World");
-            primaryStage.setScene(new Scene(root, 960, 640));
+            primaryStage.setScene(new Scene(root, 1097, 754));
             primaryStage.show();
             primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override

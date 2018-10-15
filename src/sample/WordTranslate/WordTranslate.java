@@ -36,7 +36,7 @@ public class WordTranslate {
 
     public void deleteWord(String word) {
         try {
-            this.myDBHandler.deleteWord(word);
+            System.out.println(this.myDBHandler.deleteWord(word));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

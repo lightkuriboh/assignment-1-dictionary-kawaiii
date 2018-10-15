@@ -12,7 +12,7 @@ public class DBHandler {
 
     public DBHandler() {
         this.conn  = this.getConnect(
-                "jdbc:sqlite:" + this.HieuURL
+                "jdbc:sqlite:" + this.TestUrl
         );
     }
 
@@ -107,7 +107,7 @@ public class DBHandler {
             res += t + "\n" + z;
             return res;
         }
-        return "-1";
+        return "Word has not been updated yet!!!";
     }
 
 
@@ -154,7 +154,7 @@ public class DBHandler {
 
     public String deleteWord(String english) throws SQLException{
         String cmd = "SELECT idx, available FROM minhpro99 WHERE English = '"+english+"'";
-        String cmdUpdate = "UPDATE minhpro99 SET available = ? "
+        String cmdUpdate = "UPDATE minhpro99 SET available = ?, vietnamese = ?, pronunciation = ?"
                 + "WHERE idx = ?";
         try {
             Statement st = conn.createStatement();
@@ -165,7 +165,9 @@ public class DBHandler {
                 if (avail == 0) return "Word not found!";
                 PreparedStatement ps = conn.prepareStatement(cmdUpdate);
                 ps.setInt(1,0);
-                ps.setInt(2,rs.getInt("idx"));
+                ps.setInt(4,rs.getInt("idx"));
+                ps.setString(2,"Word has been deleted!");
+                ps.setString(3,"");
                 ps.executeUpdate();
                 return "Deleted successfully!";
             }
@@ -190,8 +192,8 @@ public class DBHandler {
                 Integer avail = rs.getInt("available");
                 if (avail == 0) return "Word not found!";
                 PreparedStatement ps = conn.prepareStatement(cmdUpdate);
-                ps.setString(1, vietnamese);
-                ps.setString(2, pronun);
+                if (!vietnamese.equals("")) ps.setString(1, vietnamese);
+                if (!pronun.equals("")) ps.setString(2, pronun);
                 ps.setInt(3, rs.getInt("idx"));
                 ps.executeUpdate();
                 return "Updated success!";
