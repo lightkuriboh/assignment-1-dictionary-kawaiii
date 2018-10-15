@@ -37,6 +37,7 @@ public class Controller implements Initializable {
         this.myWordTranslate  = new WordTranslate();
 
         this.textSpeaker = new Speaker();
+
     }
 
     @FXML
@@ -184,6 +185,10 @@ public class Controller implements Initializable {
      */
     public void readWord() {
         this.textSpeaker.speak(this.chosenWord);
+    }
+
+    public void speakEnglish() {
+        this.textSpeaker.speak(this.searchDoc.textProperty().getValue());
     }
 
 

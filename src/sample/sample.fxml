@@ -91,6 +91,7 @@
                         <TextArea fx:id="translatedText" layoutY="-6.0" prefHeight="387.0" prefWidth="960.0" promptText="Your answer will go here" />
                      </children></AnchorPane>
                   <Button fx:id="SubmitDocument" layoutY="190.0" mnemonicParsing="false" onAction="#submitDocument" prefHeight="33.0" prefWidth="960.0" text="Translate" />
+                  <Button layoutX="904.0" layoutY="164.0" mnemonicParsing="false" onAction="#speakEnglish" text="Speak" />
                </children></AnchorPane>
       </content>
     </Tab>
