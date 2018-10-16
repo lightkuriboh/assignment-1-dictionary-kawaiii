@@ -92,10 +92,10 @@ public class DBHandler {
 
     public String getStringWord(String englishWord) throws SQLException {
 
-        final String[] metaCharacters = {"\"", "'", "{", "}", "[", "]", "(", ")"};
+        /*final String[] metaCharacters = {"\"", "'", "{", "}", "[", "]", "(", ")"};
         for (String sp: metaCharacters) {
             englishWord = englishWord.replace(sp, "\\" + sp);
-        }
+        }*/
 
         Statement st = conn.createStatement();
         String sql = "SELECT vietnamese, pronunciation FROM minhpro99 WHERE english = \"" + englishWord + "\"";

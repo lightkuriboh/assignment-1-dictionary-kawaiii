@@ -98,5 +98,14 @@
                </children></AnchorPane>
       </content>
     </Tab>
+      <Tab text="How to use">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="-1.0" layoutY="-1.0" prefHeight="715.0" prefWidth="1097.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
   </tabs>
 </TabPane>
