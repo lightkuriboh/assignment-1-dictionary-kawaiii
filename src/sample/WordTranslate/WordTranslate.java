@@ -1,5 +1,6 @@
 package sample.WordTranslate;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class WordTranslate {
@@ -7,6 +8,7 @@ public class WordTranslate {
     private DBHandler myDBHandler;
     private HintManager myHintManager;
 
+    private Label HowToUse = new Label();
     public WordTranslate() {
         this.myDBHandler = new DBHandler();
 

@@ -17,14 +17,15 @@ import sample.WordTranslate.displayDetails;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+import sample.WordTranslate.notice;
 
 public class Controller implements Initializable {
 
     public String chosenWord = new String();
 
     Speaker textSpeaker;
-
+    @FXML
+    Label HowToUse;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.searchBar.textProperty().addListener((obs, oldText, newText) -> {
@@ -32,7 +33,9 @@ public class Controller implements Initializable {
         });
         this.myDocumentTranslate  = new DocumentTranslate();
         this.myWordTranslate  = new WordTranslate();
-
+        this.HowToUse = new Label();
+        System.out.println(notice.howToUse);
+        this.HowToUse.setText(notice.howToUse);
         this.textSpeaker = new Speaker();
 
     }
