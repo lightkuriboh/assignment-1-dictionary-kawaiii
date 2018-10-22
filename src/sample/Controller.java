@@ -25,17 +25,19 @@ public class Controller implements Initializable {
 
     Speaker textSpeaker;
     @FXML
-    Label HowToUse;
+    private TextArea HowToUse;
+
+
+    String curText = new String("");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.searchBar.textProperty().addListener((obs, oldText, newText) -> {
             this.textChangeInput(newText);
+            curText=newText;
         });
         this.myDocumentTranslate  = new DocumentTranslate();
         this.myWordTranslate  = new WordTranslate();
-        this.HowToUse = new Label();
-        System.out.println(notice.howToUse);
-        this.HowToUse.setText(notice.howToUse);
+        this.HowToUse.textProperty().setValue(notice.howToUse);
         this.textSpeaker = new Speaker();
 
     }
@@ -78,7 +80,7 @@ public class Controller implements Initializable {
     }
 
     public void textChangeInput(final String word) {
-
+        if (word.length()==0) return;
         ObservableList<Label> listHints = FXCollections.observableArrayList();
 
         ArrayList<String> myHints = this.myWordTranslate.getHints(word);
@@ -148,6 +150,7 @@ public class Controller implements Initializable {
     public void addNewWord() {
         this.myWordTranslate.insertWord(this.getAddE(), this.getAddV(), this.getAddP());
         System.out.println(String.format("English: %s\nVietnamese: %s\nPronunciation: %s\n", this.getAddE(), this.getAddV(), this.getAddP()));
+        textChangeInput(this.curText);
     }
 
     @FXML
@@ -159,6 +162,7 @@ public class Controller implements Initializable {
         if (delE.textProperty().getValue().equals(this.chosenWord)) {
             wordDetails.setItems(displayDetails.get(this.chosenWord,this.myWordTranslate.getDetails(this.chosenWord)));
         }
+        textChangeInput(this.curText);
     }
 
     @FXML

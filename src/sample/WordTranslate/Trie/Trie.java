@@ -37,6 +37,24 @@ public class Trie {
                 }
             }
         }
+        //for(Integer i:curNode.getIndexList()) System.out.print(Integer.toString(i)+" ");
+        //System.out.println("");
         return curNode.getIndexList();
+    }
+
+    public void delete(Integer index, String word) {
+        TrieNode curNode = this.rootNode;
+        for (int i = 0; i < word.length(); i++) {
+            char curChar = word.charAt(i);
+            if ('a' <= curChar && curChar <= 'z') {
+                TrieNode nextNode = curNode.getNextNode(curChar);
+                if (nextNode == null) {
+                    nextNode = curNode.newNode(curChar);
+                }
+                curNode = nextNode;
+                curNode.deleteIndex(index);
+            }
+        }
+
     }
 }

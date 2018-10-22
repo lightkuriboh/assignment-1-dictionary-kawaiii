@@ -33,12 +33,12 @@ public class WordTranslate {
     }
 
     public void insertWord(String Eng, String Vie, String Pro) {
-        this.myDBHandler.insertWord(Eng, Vie, Pro);
+        this.myDBHandler.insertWord(myHintManager, Eng, Vie, Pro);
     }
 
     public void deleteWord(String word) {
         try {
-            System.out.println(this.myDBHandler.deleteWord(word));
+            System.out.println(this.myDBHandler.deleteWord(myHintManager,word));
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

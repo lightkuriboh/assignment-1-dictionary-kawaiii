@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class HintManager {
 
     private Trie myTrie;
-
+    private ArrayList<Boolean> myListCheck = new ArrayList<>();
     public HintManager () {
         this.myTrie = new Trie();
     }
@@ -13,14 +13,34 @@ public class HintManager {
     private ArrayList<String> myListWord = new ArrayList<>();
 
     public void addMoreWord(String word) {
-        this.myListWord.add(word);
+        Integer st=-1;
+        for(int i=0;i<myListWord.size();i++) {
+            if (myListCheck.get(i)==false && myListWord.get(i).equals(word)) {
+                st = i;
+                break;
+            }
+        }
+        if (st==-1) {
+            this.myListWord.add(word);
+            this.myListCheck.add(true);
+            myTrie.insertWord(myListWord.size()-1,word);
+        } else{
+            myListCheck.set(st,true);
+            myTrie.insertWord(st,word);
+        }
     }
 
-    public void initData() {
-        for (int i = 0; i < this.myListWord.size(); i++) {
-            String word = this.myListWord.get(i);
-            this.myTrie.insertWord(i, word);
+    public void deleteWord(String word) {
+        Integer st=-1;
+        for(int i=0;i<myListWord.size();i++) {
+            if (myListCheck.get(i)==true && myListWord.get(i).equals(word)) {
+                st = i;
+                break;
+            }
         }
+        if (st==-1) return;
+        myListCheck.set(st,false);
+        myTrie.delete(st,word);
     }
 
     public ArrayList<String> getHints(String word) {

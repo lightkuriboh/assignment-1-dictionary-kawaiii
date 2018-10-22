@@ -67,7 +67,6 @@ public class DBHandler {
                 if (avail == 0) continue;
                 myHintManager.addMoreWord(y);
             }
-            myHintManager.initData();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -111,7 +110,7 @@ public class DBHandler {
     }
 
 
-    public String insertWord(String english, String vietnamese, String pronun) {
+    public String insertWord(HintManager myHintManager, String english, String vietnamese, String pronun) {
         String cmd = "SELECT idx, available FROM minhpro99 WHERE English = '"+english+"'";
         String cmdUpdate = "UPDATE minhpro99 SET vietnamese = ? , "
                 + "pronunciation = ?, "
@@ -133,6 +132,7 @@ public class DBHandler {
                 ps.setInt(4, rs.getInt("idx"));
 
                 ps.executeUpdate();
+                myHintManager.addMoreWord(english);
                 return "Word has been added successfully!";
             }
 
@@ -143,6 +143,7 @@ public class DBHandler {
             ps.setInt(5, 1);
             ps.setInt(1, this.getHighestId()+1);
             ps.setString(2, english);
+            myHintManager.addMoreWord(english);
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -152,7 +153,7 @@ public class DBHandler {
 
     }
 
-    public String deleteWord(String english) throws SQLException{
+    public String deleteWord(HintManager myHintManager, String english) throws SQLException{
         String cmd = "SELECT idx, available FROM minhpro99 WHERE English = '"+english+"'";
         String cmdUpdate = "UPDATE minhpro99 SET available = ?, vietnamese = ?, pronunciation = ?"
                 + "WHERE idx = ?";
@@ -169,6 +170,7 @@ public class DBHandler {
                 ps.setString(2,"Word has been deleted!");
                 ps.setString(3,"");
                 ps.executeUpdate();
+                myHintManager.deleteWord(english);
                 return "Deleted successfully!";
             }
 
