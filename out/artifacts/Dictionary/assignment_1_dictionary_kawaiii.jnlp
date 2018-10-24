@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="assignment_1_dictionary_kawaiii.jnlp">
+  <information>
+    <title>Dictionary</title>
+    <vendor>Unknown</vendor>
+    <description>Dictionary</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="assignment_1_dictionary_kawaiii.jar" size="23257" download="eager" />
+    <jar href="cmu_time_awb.jar" size="1723774" download="eager" />
+    <jar href="cmu_us_kal.jar" size="4899359" download="eager" />
+    <jar href="cmudict04.jar" size="894905" download="eager" />
+    <jar href="cmulex.jar" size="599429" download="eager" />
+    <jar href="cmutimelex.jar" size="1231" download="eager" />
+    <jar href="en_us.jar" size="866598" download="eager" />
+    <jar href="freetts-jsapi10.jar" size="56313" download="eager" />
+    <jar href="freetts.jar" size="208668" download="eager" />
+    <jar href="jsapi.jar" size="51811" download="eager" />
+    <jar href="mbrola.jar" size="11926" download="eager" />
+    <jar href="sqlite-jdbc-3.23.1.jar" size="6733696" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="1097" height="754" main-class="sample.Main"  name="Dictionary" />
+  <update check="background"/>
+</jnlp>

@@ -91,11 +91,14 @@ public class DBHandler {
 
     public String getStringWord(String englishWord) throws SQLException {
 
-        /*final String[] metaCharacters = {"\"", "'", "{", "}", "[", "]", "(", ")"};
+        final String[] metaCharacters = {"\"", "'", "{", "}", "[", "]", "(", ")"};
         for (String sp: metaCharacters) {
             englishWord = englishWord.replace(sp, "\\" + sp);
-        }*/
-
+        }
+        for(Integer i=0;i<englishWord.length();i++) {
+            Character j = englishWord.charAt(i);
+            if (j.equals('\"')) return "Word has not been updated yet!!!";
+        }
         Statement st = conn.createStatement();
         String sql = "SELECT vietnamese, pronunciation FROM minhpro99 WHERE english = \"" + englishWord + "\"";
         ResultSet rs = st.executeQuery(sql);

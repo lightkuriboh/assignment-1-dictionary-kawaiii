@@ -13,6 +13,8 @@ public class Trie {
         TrieNode curNode = this.rootNode;
         for (int i = 0; i < word.length(); i++) {
             char curChar = word.charAt(i);
+            if ('A' <= curChar && curChar <= 'Z')
+                curChar = (char)((int)curChar + ((int)'a'-(int)'A'));
             if ('a' <= curChar && curChar <= 'z') {
                 TrieNode nextNode = curNode.getNextNode(curChar);
                 if (nextNode == null) {
@@ -28,6 +30,8 @@ public class Trie {
         TrieNode curNode = this.rootNode;
         for (int i = 0; i < word.length(); i++) {
             char curChar = word.charAt(i);
+            if ('A' <= curChar && curChar <= 'Z')
+                curChar = (char)((int)curChar + ((int)'a'-(int)'A'));
             if ('a' <= curChar && curChar <= 'z') {
                 TrieNode nextNode = curNode.getNextNode(curChar);
                 if (nextNode != null) {
@@ -46,6 +50,8 @@ public class Trie {
         TrieNode curNode = this.rootNode;
         for (int i = 0; i < word.length(); i++) {
             char curChar = word.charAt(i);
+            if ('A' <= curChar && curChar <= 'Z')
+                curChar = (char)((int)curChar + ((int)'a'-(int)'A'));
             if ('a' <= curChar && curChar <= 'z') {
                 TrieNode nextNode = curNode.getNextNode(curChar);
                 if (nextNode == null) {

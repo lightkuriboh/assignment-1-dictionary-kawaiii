@@ -35,7 +35,16 @@ public class TrieNode {
 
     public void addIndex(int _index, int _limit) {
         if (this.indexList.size() < _limit) {
-            this.indexList.add(_index);
+            this.indexList.add(0);
+            for(Integer i=this.indexList.size()-1;i>=1;i--) {
+                this.indexList.set(i,this.indexList.get(i-1));
+            }
+            this.indexList.set(0,_index);
+        } else {
+            for(Integer i=_limit-1;i>=1;i--) {
+                this.indexList.set(i,this.indexList.get(i-1));
+            }
+            this.indexList.set(0,_index);
         }
     }
 
