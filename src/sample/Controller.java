@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import sample.DocumentTranslate.DocumentTranslate;
+import sample.DocumentTranslate.DocumentTranslator2;
 import sample.WordTranslate.WordTranslate;
 import sample.WordTranslate.displayDetails;
 import java.net.URL;
@@ -27,7 +28,6 @@ public class Controller implements Initializable {
     @FXML
     private TextArea HowToUse;
 
-
     String curText = new String("");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -35,7 +35,8 @@ public class Controller implements Initializable {
             this.textChangeInput(newText);
             curText=newText;
         });
-        this.myDocumentTranslate  = new DocumentTranslate();
+        this.searchDoc.textProperty().addListener((obs, oldText, newText) -> { this.textChangeDoc(newText); });
+        this.myDocumentTranslate  = new DocumentTranslator2();
         this.myWordTranslate  = new WordTranslate();
         this.HowToUse.textProperty().setValue(notice.howToUse);
         this.textSpeaker = new Speaker();
@@ -45,16 +46,18 @@ public class Controller implements Initializable {
     @FXML
     private TextArea searchDoc;
 
-    @FXML
-    private TextArea translatedText;
-
-    private DocumentTranslate myDocumentTranslate;
-
-    public void submitDocument(ActionEvent event) {
+    private void textChangeDoc(String newText) {
         String document = this.searchDoc.getText();
         String translated = this.myDocumentTranslate.translateIt("en", "vi", document);
         this.translatedText.textProperty().setValue(translated);
-//        this.textSpeaker.speak(document);
+    }
+
+    @FXML
+    private TextArea translatedText;
+
+    private DocumentTranslator2 myDocumentTranslate;
+
+    public void submitDocument(ActionEvent event) {
     }
 
 
