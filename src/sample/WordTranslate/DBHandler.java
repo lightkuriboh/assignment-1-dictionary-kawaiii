@@ -13,7 +13,7 @@ public class DBHandler {
 
     public DBHandler() {
         this.conn  = this.getConnect(
-                "jdbc:sqlite:" + this.HieuURLTest
+                "jdbc:sqlite:" + this.TestUrl
         );
     }
 
@@ -102,7 +102,6 @@ public class DBHandler {
         }
         Statement st = conn.createStatement();
         String sql = "SELECT vietnamese, pronunciation FROM minhpro99 WHERE english = \"" + englishWord + "\"";
-        System.out.println(sql);
         ResultSet rs = st.executeQuery(sql);
         String res = "";
         while (rs.next()) {
