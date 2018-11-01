@@ -37,7 +37,7 @@ public class Trie {
                 if (nextNode != null) {
                     curNode = nextNode;
                 } else {
-                    break;
+                    //break;
                 }
             }
         }

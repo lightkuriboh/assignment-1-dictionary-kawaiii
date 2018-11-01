@@ -7,12 +7,13 @@ import java.sql.*;
 public class DBHandler {
 
     final String HieuURL = "/home/kurikute/workspace/programming/java/DictionaryFX/data/dictionary.db";
+    final String HieuURLTest = "/home/kurikute/workspace/programming/java/DictionaryFX/testDB/dictionary.db";
     final String MinhURL = "C:/Users/MSI/Documents/GitHub/assignment-1-dictionary-kawaiii/data/dictionary.db";
     final String TestUrl = "D:/minhhh/python/dictionary2.db";
 
     public DBHandler() {
         this.conn  = this.getConnect(
-                "jdbc:sqlite:" + this.TestUrl
+                "jdbc:sqlite:" + this.HieuURLTest
         );
     }
 
@@ -101,6 +102,7 @@ public class DBHandler {
         }
         Statement st = conn.createStatement();
         String sql = "SELECT vietnamese, pronunciation FROM minhpro99 WHERE english = \"" + englishWord + "\"";
+        System.out.println(sql);
         ResultSet rs = st.executeQuery(sql);
         String res = "";
         while (rs.next()) {
@@ -109,7 +111,7 @@ public class DBHandler {
             res += t + "\n" + z;
             return res;
         }
-        return "Word has not been updated yet!!!";
+        return "Word not found";
     }
 
 
@@ -158,7 +160,7 @@ public class DBHandler {
 
     public String deleteWord(HintManager myHintManager, String english) throws SQLException{
         String cmd = "SELECT idx, available FROM minhpro99 WHERE English = '"+english+"'";
-        String cmdUpdate = "UPDATE minhpro99 SET available = ?, vietnamese = ?, pronunciation = ?"
+        String cmdUpdate = "UPDATE minhpro99 SET available = ? "
                 + "WHERE idx = ?";
         try {
             Statement st = conn.createStatement();
@@ -169,9 +171,7 @@ public class DBHandler {
                 if (avail == 0) return "Word not found!";
                 PreparedStatement ps = conn.prepareStatement(cmdUpdate);
                 ps.setInt(1,0);
-                ps.setInt(4,rs.getInt("idx"));
-                ps.setString(2,"Word has been deleted!");
-                ps.setString(3,"");
+                ps.setInt(2,rs.getInt("idx"));
                 ps.executeUpdate();
                 myHintManager.deleteWord(english);
                 return "Deleted successfully!";
@@ -197,8 +197,8 @@ public class DBHandler {
                 Integer avail = rs.getInt("available");
                 if (avail == 0) return "Word not found!";
                 PreparedStatement ps = conn.prepareStatement(cmdUpdate);
-                if (!vietnamese.equals("")) ps.setString(1, vietnamese);
-                if (!pronun.equals("")) ps.setString(2, pronun);
+                ps.setString(1, vietnamese);
+                ps.setString(2, pronun);
                 ps.setInt(3, rs.getInt("idx"));
                 ps.executeUpdate();
                 return "Updated success!";
