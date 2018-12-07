@@ -83,7 +83,6 @@ export default class EngViet extends React.Component {
             deleteVisible: false
         });
         if (word.toLowerCase() === "y") {
-            let myWord = this.state.myChosen;
             let that = this;
             setTimeout(function(){alert("Deleted word {" + that.state.myChosen + "}!");}, 1000);
         }

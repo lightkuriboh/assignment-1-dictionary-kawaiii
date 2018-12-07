@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import Menu from './components/Menu';
-import {Header, Left, Body, Button, Icon} from 'native-base';
+import {Button, Icon} from 'native-base';
 
 import {
     StyleSheet,
