@@ -44,11 +44,6 @@ public class MyNativeModule extends ReactContextBaseJavaModule {
         callback.invoke(this.mine.getHint(word.toLowerCase()));
     }
 
-    @ReactMethod
-    public void deleteWord(String word, Callback callback) {
-        callback.invoke("successed");
-    }
-
     @Override
     public String getName() {
         return "MyNativeModule";

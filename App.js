@@ -24,7 +24,7 @@ class App extends Component<Props> {
 
     componentWillMount() {
         this.setState({
-            searchWord: 'Hieu dep trai',
+            searchWord: '',
             result: '',
             showingMenu: true,
             hints: [],
@@ -36,48 +36,9 @@ class App extends Component<Props> {
         MyNativeModule.initData();
     };
 
-    onTextChange = (text) => {
-        this.setState({
-            searchWord: text
-        });
-        MyNativeModule.getHint(text, this.displayHints);
-    };
-
-    displayHints = (result) => {
-        let newJson = result.replace(/([a-zA-Z0-9]+?):/g, '"$1":');
-        newJson = newJson.replace(/'/g, '"');
-        let data = JSON.parse(newJson);
-        this.setState({
-            hints: data
-        });
-    };
-
     greetUserCallBack = () => {
         const state = this.state;
         MyNativeModule.greetUser(state.searchWord, this.displayResult);
-    };
-
-    displayResult = (result) => {
-        this.setState({
-            result: result
-        });
-    };
-
-    onChooseWord = (word) => {
-        MyNativeModule.greetUser(word, this.displayResult);
-        this.setState({
-            searchWord: word
-        });
-    };
-
-    deleteWord = (word) => {
-        MyNativeModule.deleteWord(word, this.displayDeleteResult);
-    };
-
-    displayDeleteResult = (result) => {
-        this.setState({
-            deleteActionResult: result
-        });
     };
 
     makeMenuVanish = () => {
@@ -130,17 +91,12 @@ class App extends Component<Props> {
                     }
                 }>
                     <Menu
-                        onTextChange = {(text) => this.onTextChange(text)}
-                        onSearch = {() => this.greetUserCallBack()}
-                        onChoose = {(word) => this.onChooseWord(word)}
                         searchWord = {this.state.searchWord}
-                        hints = {this.state.hints}
-                        result = {this.state.result}
                         showingMenu = {this.state.showingMenu}
                         makeMenuVanish = {this.makeMenuVanish}
-
-                        onDelete = {(word) => this.deleteWord(word)}
                         deleteResult = {this.state.deleteActionResult}
+
+                        core = {MyNativeModule}
                     />
                 </View>
             </View>

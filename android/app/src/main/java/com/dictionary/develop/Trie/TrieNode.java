@@ -38,4 +38,8 @@ public class TrieNode {
             this.indexList.add(_index);
         }
     }
+
+    public void deleteIndex(Integer idx) {
+        indexList.remove(idx);
+    }
 }

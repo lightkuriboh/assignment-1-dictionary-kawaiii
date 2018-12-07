@@ -75,16 +75,12 @@ export default class Menu extends React.Component {
             if (this.state.myAction === '1') {
                 return (
                     <EngViet
-                        onTextChange={(text) => this.props.onTextChange(text)}
-                        onSearch={() => this.props.onSearch()}
-                        onChoose={(word) => this.props.onChoose(word)}
-                        makeInvisible={() => this.makeInvisible()}
-                        searchWord={this.props.searchWord}
-                        hints={this.props.hints}
-                        result={this.props.result}
 
-                        onDelete = {(word) => this.props.onDelete(word)}
+                        makeInvisible={() => this.makeInvisible()}
+
                         deleteResult = {this.props.deleteResult}
+
+                        core = {this.props.core}
                     />
                 )
             } else if (this.state.myAction === '2') {

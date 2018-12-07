@@ -9,40 +9,73 @@ export default class EngViet extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputText: props.searchWord,
+            inputText: '',
             myChosen: '',
-            insertVisible: false,
+            details: '',
+            hints: [],
             deleteVisible: false,
-            updateVisible: false
+            hintHeight: '80%',
+            detailsHeight: '10%'
         };
     }
 
-    onTextChange = function (text) {
+    onSearchWord = () => {
+        this.setState({
+            myChosen: this.state.inputText,
+            hintHeight: '0%',
+            detailsHeight: '80%'
+        });
+        this.props.core.greetUser(this.state.myChosen, this.displayResult);
+    };
+
+    onTextChange = (text) => {
         this.setState({
             inputText: text
         });
-        this.props.onTextChange(text);
+
+        this.props.core.getHint(text, this.displayHints);
+
+        this.setState({
+            hintHeight: '80%',
+            detailsHeight: '10%'
+        });
+    };
+
+    displayHints = (result) => {
+        let newJson = result.replace(/([a-zA-Z0-9]+?):/g, '"$1":');
+        newJson = newJson.replace(/'/g, '"');
+        let data = JSON.parse(newJson);
+        this.setState({
+            hints: data
+        });
     };
 
     speakSearchWord = () => {
-
-
         tts.getInitStatus().then(() => {
-            tts.speak(this.props.searchWord);
+            tts.speak(this.state.myChosen);
         }, (err) => {
             if (err.code === 'no_engine') {
                 tts.requestInstallEngine();
             }
         });
         tts.stop();
-
     };
 
     itemWordChosen = (word) => {
+        this.props.core.greetUser(word, this.displayResult);
+
         this.setState({
-            inputText: word
+            inputText: word,
+            myChosen: word,
+            hintHeight: '0%',
+            detailsHeight: '80%'
         });
-        this.props.onChoose(word);
+    };
+
+    displayResult = (result) => {
+        this.setState({
+           details: result
+        });
     };
 
     confirmDeleteWord = (word) => {
@@ -50,102 +83,99 @@ export default class EngViet extends React.Component {
             deleteVisible: false
         });
         if (word.toLowerCase() === "y") {
-            let myWord = this.props.searchWord;
-            this.props.onDelete(myWord);
+            let myWord = this.state.myChosen;
             let that = this;
-            setTimeout(function(){alert(that.props.deleteResult);}, 1000);
+            setTimeout(function(){alert("Deleted word {" + that.state.myChosen + "}!");}, 1000);
+        }
+    };
 
+    hintStyle = function () {
+        return {
+            height: this.state.hintHeight
+        }
+    };
+
+    detailsStyle = function () {
+        return {
+            height: this.state.detailsHeight
         }
     };
 
     render() {
         return (
-            <View style = {styles.mainContainer}>
-                <Prompt
-                    title={'Delete This Word'}
-                    visible={this.state.deleteVisible}
-                    placeholder={"y/n"}
-                    onSubmit={(text) => this.confirmDeleteWord(text)}
-                    onCancel={() => this.setState({deleteVisible: false})}
-                />
-                <View style={styles.mainContent}>
-                    <View style={styles.searchLayout}>
-                        <View style={styles.searchForm}>
-                            <Form>
-                                <Item rounded>
-                                    <Input
-                                        bordered
-                                        placeholder='Search'
-                                        onChangeText={(text) => this.onTextChange(text)}
-                                        value={this.state.inputText}
-                                    />
-                                    <Button transparent onPress={this.props.onSearch}>
-                                        <Icon name='search' />
-                                    </Button>
-                                </Item>
-                            </Form>
+            <Card style = {styles.mainContainer}>
+                <CardItem cardBody style={{height: '100%'}}>
+                    <Prompt
+                        title={'Delete This Word'}
+                        visible={this.state.deleteVisible}
+                        placeholder={this.hintHeight}
+                        onSubmit={(text) => this.confirmDeleteWord(text)}
+                        onCancel={() => this.setState({deleteVisible: false})}
+                    />
+                    <View style={styles.mainContent}>
+                        <View style={styles.searchLayout}>
+                            <View style={styles.searchForm}>
+                                <Form>
+                                    <Item rounded>
+                                        <Input
+                                            bordered
+                                            placeholder='Search'
+                                            onChangeText={(text) => this.onTextChange(text)}
+                                            value={this.state.inputText}
+                                        />
+                                        <Button transparent onPress={this.onSearchWord}>
+                                            <Icon name='search' />
+                                        </Button>
+                                    </Item>
+                                </Form>
+                            </View>
                         </View>
-                        <View style={styles.listHints}>
-                            <ScrollView>
-                                <FlatList
-                                    data = {
-                                        this.props.hints
-                                    }
-                                    renderItem = {({item}) => <View style={styles.listContainer}><Button
-                                        small
-                                        block
-                                        bordered
-                                        primary
-                                        onPress={() => this.itemWordChosen(item.key)}
-                                    ><Text style={{color: 'red'}}>{item.key}</Text></Button></View>}
-                                />
-                            </ScrollView>
+                        <View style = {styles.detailLayout}>
+                            <Card>
+                                <CardItem header style={this.hintStyle()}>
+                                    <ScrollView>
+                                        <FlatList
+                                            data = {
+                                                this.state.hints
+                                            }
+                                            renderItem = {({item}) => <View style={styles.listContainer}><Button
+                                                small
+                                                block
+                                                bordered
+                                                primary
+                                                onPress={() => this.itemWordChosen(item.key)}
+                                            ><Text style={{color: 'red'}}>{item.key}</Text></Button></View>}
+                                        />
+                                    </ScrollView>
+                                </CardItem>
+                                <CardItem cardBody style={this.detailsStyle()}>
+                                    <ScrollView>
+                                        <Text>{this.state.details}</Text>
+                                    </ScrollView>
+                                </CardItem>
+                                <CardItem footer style={{height:'10%'}}>
+                                    <Item style={{justifyContent: 'center'}}>
+                                        <Button
+                                            small
+                                            primary
+                                            onPress={() => this.speakSearchWord()}
+                                        >
+                                            <Icon name='md-mic'/>
+                                        </Button>
+                                        {/*<Button*/}
+                                            {/*small*/}
+                                            {/*danger*/}
+                                            {/*onPress={() => this.setState({deleteVisible: true})}*/}
+                                        {/*>*/}
+                                            {/*<Text>Delete</Text>*/}
+                                        {/*</Button>*/}
+                                    </Item>
+                                </CardItem>
+                            </Card>
                         </View>
                     </View>
-                    <View style = {styles.detailLayout}>
-                        <Card>
-                            <CardItem cardBody style={{height:'80%'}}>
-                                <ScrollView>
-                                    <Text>{this.props.result}</Text>
-                                </ScrollView>
-                            </CardItem>
-                            <CardItem footer style={{height:'20%'}}>
-                                <Item style={{justifyContent: 'center'}}>
-                                    <Button
-                                        small
-                                        success
-                                    >
-                                        <Text>Insert</Text>
-                                    </Button>
-                                    <Text>    </Text>
-                                    <Button
-                                        small
-                                        danger
-                                        onPress={() => this.setState({deleteVisible: true})}
-                                    >
-                                        <Text>Delete</Text>
-                                    </Button>
-                                    <Text>    </Text>
-                                    <Button
-                                        warning
-                                        small
-                                    >
-                                        <Text>Modify</Text>
-                                    </Button>
-                                    <Text>    </Text>
-                                    <Button
-                                        small
-                                        primary
-                                        onPress={() => this.speakSearchWord()}
-                                    >
-                                        <Icon name='md-mic'/>
-                                    </Button>
-                                </Item>
-                            </CardItem>
-                        </Card>
-                    </View>
-                </View>
-            </View>
+                </CardItem>
+            </Card>
         );
     }
 }
@@ -160,33 +190,27 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: '#e6e6e6',
-        padding: 10
+        padding: 5
     },
     buttonContainer: {
         padding: 10,
         justifyContent: 'center',
     },
     searchForm: {
-        height: 60,
+        flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
     },
     searchLayout: {
-        flex: 2.25,
+        flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         padding: 20,
-        backgroundColor: '#e9e9e9',
-        borderRadius: 15,
-        margin: 10,
-        borderWidth: 1,
-        borderColor: '#0066ff'
+        margin: 10
     },
     detailLayout: {
-        flex: 7,
+        flex: 12,
         justifyContent: 'center',
-        backgroundColor: '#e9e9e9',
         borderRadius: 15,
         margin: 10,
         flexDirection: 'column'
@@ -194,13 +218,8 @@ const styles = StyleSheet.create({
     mainContent: {
         flex: 9,
         justifyContent: 'center',
-        flexDirection: 'row',
+        flexDirection: 'column',
         zIndex: 1
-    },
-    listHints: {
-        flex: 1,
-        backgroundColor: 'white',
-        marginTop: 10
     },
     listContainer: {
         margin: 2,

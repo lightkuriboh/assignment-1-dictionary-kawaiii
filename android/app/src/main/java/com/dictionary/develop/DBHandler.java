@@ -32,23 +32,6 @@ public class DBHandler extends SQLiteAssetHelper {
         onCreate(db);
     }
 
-    public String insertData(String detail) { // detail co dang {{$english},{$vietnamese},{$pronunciation}}
-        return "Inserted success!";
-        //return "Word existed!";
-        //return "Invalid data!";
-    }
-
-    public String deleteData(String word) {
-        return "Deleted success!";
-        //return "Word not found!";
-    }
-
-    public String updateWord(final String word, String detail) { // detail co dang {{$english},{$vietnamese},{$pronunciation}}
-        return "Updated success!";
-        //return "Word not found!";
-        //return "Invalid data!";
-    }
-
     public String getHint(String word) {
         return this.myHints.getHint(word);
     }
@@ -75,5 +58,6 @@ public class DBHandler extends SQLiteAssetHelper {
             }
         }
         return result;
+        //return WordDetailManagement.getDecoration(searchWord, result);
     }
 }
